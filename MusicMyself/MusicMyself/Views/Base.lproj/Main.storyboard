@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gdG-8l-HtI">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--List-->
+        <scene sceneID="dPc-v7-Jgo">
+            <objects>
+                <viewController id="5jK-fm-puO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3lg-M8-jyE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="503-z0-Ken"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="List" image="books.vertical" catalog="system" id="FHz-Sr-aqb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Kj-6R-hsM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1735" y="472"/>
+        </scene>
+        <!--Player-->
+        <scene sceneID="Kj9-qM-tVm">
+            <objects>
+                <viewController id="bFC-zv-nCq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FGa-ZT-1T8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="aZy-qt-lG0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Player" image="restart" catalog="system" id="Q6W-UW-8dg"/>
+                    <navigationItem key="navigationItem" id="YzL-Jh-fte"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgP-F8-htB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1735" y="-190"/>
+        </scene>
+        <!--Wifi-->
+        <scene sceneID="npt-2N-MOm">
+            <objects>
+                <viewController id="Cbi-ir-ZYo" customClass="WifiViewController" customModule="MusicMyself" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fqq-aB-wk2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lxe-SV-JMY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Wifi" image="link" catalog="system" id="U40-wg-TgH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="odc-O7-ggO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2672" y="-190"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="ZqP-ae-fRX">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gdG-8l-HtI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bus-mA-1fD">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="bFC-zv-nCq" kind="relationship" relationship="viewControllers" id="GhT-tE-aIb"/>
+                        <segue destination="5jK-fm-puO" kind="relationship" relationship="viewControllers" id="TNk-yR-UR4"/>
+                        <segue destination="Cbi-ir-ZYo" kind="relationship" relationship="viewControllers" id="x5L-UF-trJ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0nA-RG-Fdx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934.78260869565224" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="books.vertical" catalog="system" width="128" height="103"/>
+        <image name="link" catalog="system" width="128" height="122"/>
+        <image name="restart" catalog="system" width="120" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
