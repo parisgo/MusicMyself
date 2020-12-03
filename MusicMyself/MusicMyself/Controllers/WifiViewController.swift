@@ -7,7 +7,8 @@
 
 import UIKit
 
-class WifiViewController: UIViewController {
+class WifiViewController: UIViewController, DirectoryMonitorDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackground()
@@ -19,6 +20,19 @@ class WifiViewController: UIViewController {
         let webUploader = GCDWebUploader(uploadDirectory: documentsPath)
         webUploader.start(withPort: 8080, bonjourName: "Web Based Uploads")
         print("服务启动成功，使用你的浏览器访问：\(webUploader.serverURL)")
+    
+        monitor()
+    }
+    
+    func monitor()
+    {
+        var applicationDocumentsDirectory: URL {
+                return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+        }
+        
+        var dm = DirectoryMonitor(url: applicationDocumentsDirectory)
+        dm.delegate = self
+        dm.startMonitoring()
     }
     
     func hello() {
@@ -46,5 +60,10 @@ class WifiViewController: UIViewController {
         imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
         
         self.view.addSubview(imageViewBackground)
+    }
+    
+    func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
+        print("*******")
+        print(directoryMonitor.monitoredDirectoryFileDescriptor)
     }
 }

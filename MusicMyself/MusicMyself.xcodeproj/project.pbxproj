@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44127DB82579639300E75A8D /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44127DB72579639300E75A8D /* DirectoryMonitor.swift */; };
 		443ECF3C25792AB50009A3A2 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */; };
 		445240752578124800DD5E60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240742578124800DD5E60 /* AppDelegate.swift */; };
 		445240772578124800DD5E60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240762578124800DD5E60 /* SceneDelegate.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44127DB72579639300E75A8D /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		445240712578124800DD5E60 /* MusicMyself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMyself.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		445240742578124800DD5E60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */,
+				44127DB72579639300E75A8D /* DirectoryMonitor.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				44C14CDB257934840029879F /* GCDWebServerConnection.m in Sources */,
 				44C14CDF257934840029879F /* GCDWebServerStreamedResponse.m in Sources */,
 				445240752578124800DD5E60 /* AppDelegate.swift in Sources */,
+				44127DB82579639300E75A8D /* DirectoryMonitor.swift in Sources */,
 				443ECF3C25792AB50009A3A2 /* HTTPHelper.swift in Sources */,
 				44C14CF3257936190029879F /* GCDWebUploader.m in Sources */,
 				44C14CE0257934840029879F /* GCDWebServerURLEncodedFormRequest.m in Sources */,
