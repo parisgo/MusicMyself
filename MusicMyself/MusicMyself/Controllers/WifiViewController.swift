@@ -8,31 +8,31 @@
 import UIKit
 
 class WifiViewController: UIViewController {
-    var httpServer : HTTPServer! = nil
-    var isOPen:Bool = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackground()
         
-        httpServer = HTTPServer()
-        httpServer.setType("_http.tcp")
+        //默认上传目录是App的用户文档目录
+        let documentsPath = NSHomeDirectory() + "/Documents"
+        print(documentsPath)
         
-        print("\(NSHomeDirectory())/Documents")
-        httpServer.setDocumentRoot("\(NSHomeDirectory())/Documents")
-        
-        isOPen = !isOPen
-        if isOPen{
-            do{
-                try httpServer.start()
-                print( "请打开以下网址: http://\(HTTPHelper.ipAddress() ?? ""):\(httpServer.listeningPort())")
-            }catch{
-                print("启动失败")
-            }
-            
-        }else{
-            httpServer.stop()
-        }
+        let webUploader = GCDWebUploader(uploadDirectory: documentsPath)
+        webUploader.start(withPort: 8080, bonjourName: "Web Based Uploads")
+        print("服务启动成功，使用你的浏览器访问：\(webUploader.serverURL)")
+    }
+    
+    func hello() {
+        let webServer = GCDWebServer()
+                 
+        webServer.addDefaultHandler(forMethod: "GET", request: GCDWebServerRequest.self,
+                                     processBlock: {request in
+            let html = "<html><body>欢迎访问 <b>paris8.org</b></body></html>"
+            return GCDWebServerDataResponse(html: html)
+             
+        })
+         
+        webServer.start(withPort: 8080, bonjourName: "GCD Web Server")
+        print("服务启动成功，使用你的浏览器访问：\(webServer.serverURL)")
     }
 
     func addBackground() {
