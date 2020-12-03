@@ -8,11 +8,31 @@
 import UIKit
 
 class WifiViewController: UIViewController {
+    var httpServer : HTTPServer! = nil
+    var isOPen:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         addBackground()
+        
+        httpServer = HTTPServer()
+        httpServer.setType("_http.tcp")
+        
+        print("\(NSHomeDirectory())/Documents")
+        httpServer.setDocumentRoot("\(NSHomeDirectory())/Documents")
+        
+        isOPen = !isOPen
+        if isOPen{
+            do{
+                try httpServer.start()
+                print( "请打开以下网址: http://\(HTTPHelper.ipAddress() ?? ""):\(httpServer.listeningPort())")
+            }catch{
+                print("启动失败")
+            }
+            
+        }else{
+            httpServer.stop()
+        }
     }
 
     func addBackground() {
