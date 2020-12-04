@@ -8,13 +8,12 @@
 import UIKit
 
 class WifiViewController: UIViewController, DirectoryMonitorDelegate {
+    let documentsPath = NSHomeDirectory() + "/Documents/Files"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackground()
         
-        //默认上传目录是App的用户文档目录
-        let documentsPath = NSHomeDirectory() + "/Documents"
         print(documentsPath)
         
         let webUploader = GCDWebUploader(uploadDirectory: documentsPath)
@@ -26,27 +25,9 @@ class WifiViewController: UIViewController, DirectoryMonitorDelegate {
     
     func monitor()
     {
-        var applicationDocumentsDirectory: URL {
-                return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
-        }
-        
-        var dm = DirectoryMonitor(url: applicationDocumentsDirectory)
+        let dm = DirectoryMonitor(url: URL(fileURLWithPath: documentsPath))
         dm.delegate = self
         dm.startMonitoring()
-    }
-    
-    func hello() {
-        let webServer = GCDWebServer()
-                 
-        webServer.addDefaultHandler(forMethod: "GET", request: GCDWebServerRequest.self,
-                                     processBlock: {request in
-            let html = "<html><body>欢迎访问 <b>paris8.org</b></body></html>"
-            return GCDWebServerDataResponse(html: html)
-             
-        })
-         
-        webServer.start(withPort: 8080, bonjourName: "GCD Web Server")
-        print("服务启动成功，使用你的浏览器访问：\(webServer.serverURL)")
     }
 
     func addBackground() {
@@ -63,7 +44,9 @@ class WifiViewController: UIViewController, DirectoryMonitorDelegate {
     }
     
     func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
-        print("*******")
-        print(directoryMonitor.monitoredDirectoryFileDescriptor)
+        //print(directoryMonitor.directoryMonitorSource?.data)
+        DispatchQueue.main.async {
+            //self?.updateFileList()
+        }
     }
 }

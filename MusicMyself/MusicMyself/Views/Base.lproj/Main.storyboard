@@ -11,18 +11,28 @@
         <!--List-->
         <scene sceneID="dPc-v7-Jgo">
             <objects>
-                <viewController id="5jK-fm-puO" sceneMemberID="viewController">
+                <viewController id="5jK-fm-puO" customClass="FichierViewController" customModule="MusicMyself" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3lg-M8-jyE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHj-ph-pLX">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="503-z0-Ken"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="books.vertical" catalog="system" id="FHz-Sr-aqb"/>
+                    <connections>
+                        <outlet property="tableView" destination="AHj-ph-pLX" id="dcv-r7-EaE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Kj-6R-hsM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1735" y="472"/>
+            <point key="canvasLocation" x="1734.7826086956522" y="471.42857142857139"/>
         </scene>
         <!--Player-->
         <scene sceneID="Kj9-qM-tVm">
@@ -63,6 +73,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gdG-8l-HtI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bus-mA-1fD">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

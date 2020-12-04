@@ -7,35 +7,21 @@
 
 import Foundation
 
-/// A protocol that allows delegates of `DirectoryMonitor` to respond to changes in a directory.
 protocol DirectoryMonitorDelegate: class {
     func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor)
 }
 
 class DirectoryMonitor {
-    // MARK: Properties
-
-    /// The `DirectoryMonitor`'s delegate who is responsible for responding to `DirectoryMonitor` updates.
     weak var delegate: DirectoryMonitorDelegate?
 
-    /// A file descriptor for the monitored directory.
     var monitoredDirectoryFileDescriptor: CInt = -1
-
-    /// A dispatch queue used for sending file changes in the directory.
     let directoryMonitorQueue =  DispatchQueue(label: "directorymonitor", attributes: .concurrent)
-
-    /// A dispatch source to monitor a file descriptor created from the directory.
-    var directoryMonitorSource: DispatchSource?
-
-    /// URL for the directory being monitored.
+    var directoryMonitorSource: DispatchSourceFileSystemObject?
     var url: URL
 
-    // MARK: Initializers
     init(url: URL) {
         self.url = url
     }
-
-    // MARK: Monitoring
 
     func startMonitoring() {
         // Listen for changes to the directory (if we are not already).
@@ -44,14 +30,11 @@ class DirectoryMonitor {
             monitoredDirectoryFileDescriptor = open((url as NSURL).fileSystemRepresentation, O_EVTONLY)
 
             // Define a dispatch source monitoring the directory for additions, deletions, and renamings.
-            directoryMonitorSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: monitoredDirectoryFileDescriptor, eventMask: DispatchSource.FileSystemEvent.write, queue: directoryMonitorQueue) as? DispatchSource
-
+            directoryMonitorSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: monitoredDirectoryFileDescriptor, eventMask: .write, queue: directoryMonitorQueue)
+            
             // Define the block to call when a file change is detected.
             directoryMonitorSource?.setEventHandler{
                 // Call out to the `DirectoryMonitorDelegate` so that it can react appropriately to the change.
-                
-                print("-----------")
-                print(self.directoryMonitorSource)
                 self.delegate?.directoryMonitorDidObserveChange(directoryMonitor: self)
             }
 
@@ -60,7 +43,6 @@ class DirectoryMonitor {
                 close(self.monitoredDirectoryFileDescriptor)
 
                 self.monitoredDirectoryFileDescriptor = -1
-
                 self.directoryMonitorSource = nil
             }
 
@@ -75,5 +57,22 @@ class DirectoryMonitor {
             // Stop monitoring the directory via the source.
             directoryMonitorSource?.cancel()
         }
+    }
+}
+
+extension DispatchSourceFileSystemObject {
+    var dataStrings: [String] {
+        var s = [String]()
+        if data.contains(.all)      { s.append("all") }
+        if data.contains(.attrib)   { s.append("attrib") }
+        if data.contains(.delete)   { s.append("delete") }
+        if data.contains(.extend)   { s.append("extend") }
+        if data.contains(.funlock)  { s.append("funlock") }
+        if data.contains(.link)     { s.append("link") }
+        if data.contains(.rename)   { s.append("rename") }
+        if data.contains(.revoke)   { s.append("revoke") }
+        if data.contains(.write)    { s.append("write") }
+        
+        return s
     }
 }
