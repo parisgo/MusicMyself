@@ -24,6 +24,9 @@
 		445F92E6257BD1F0009AF09A /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 445F92E4257BD1F0009AF09A /* ListCollectionViewCell.xib */; };
 		445F92EB257BD406009AF09A /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92EA257BD406009AF09A /* ViewExtension.swift */; };
 		445F92F3257BD9E5009AF09A /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92F2257BD9E5009AF09A /* Album.swift */; };
+		445F92FB257C1AA8009AF09A /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92FA257C1AA8009AF09A /* ListDetailViewController.swift */; };
+		445F9301257C242C009AF09A /* ListEveryFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92FF257C242C009AF09A /* ListEveryFileTableViewCell.swift */; };
+		445F9302257C242C009AF09A /* ListEveryFileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 445F9300257C242C009AF09A /* ListEveryFileTableViewCell.xib */; };
 		4467DF8E257ACA64001F4146 /* BDD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467DF82257ACA64001F4146 /* BDD.swift */; };
 		4467DF8F257ACA64001F4146 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4467DF83257ACA64001F4146 /* FMDatabaseQueue.m */; };
 		4467DF90257ACA64001F4146 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4467DF86257ACA64001F4146 /* FMDatabaseAdditions.m */; };
@@ -100,6 +103,9 @@
 		445F92E4257BD1F0009AF09A /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCollectionViewCell.xib; sourceTree = "<group>"; };
 		445F92EA257BD406009AF09A /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		445F92F2257BD9E5009AF09A /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		445F92FA257C1AA8009AF09A /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		445F92FF257C242C009AF09A /* ListEveryFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEveryFileTableViewCell.swift; sourceTree = "<group>"; };
+		445F9300257C242C009AF09A /* ListEveryFileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListEveryFileTableViewCell.xib; sourceTree = "<group>"; };
 		4467DF81257ACA64001F4146 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		4467DF82257ACA64001F4146 /* BDD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BDD.swift; sourceTree = "<group>"; };
 		4467DF83257ACA64001F4146 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 				4467DFB3257AD6B3001F4146 /* FichierViewController.swift */,
 				44C40579257B8CD90010581E /* FichierDetailViewController.swift */,
 				445F92DE257BCD68009AF09A /* ListViewController.swift */,
+				445F92FA257C1AA8009AF09A /* ListDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -426,6 +433,8 @@
 				44C40573257B861C0010581E /* FichierTableViewCell.xib */,
 				445F92E3257BD1F0009AF09A /* ListCollectionViewCell.swift */,
 				445F92E4257BD1F0009AF09A /* ListCollectionViewCell.xib */,
+				445F92FF257C242C009AF09A /* ListEveryFileTableViewCell.swift */,
+				445F9300257C242C009AF09A /* ListEveryFileTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -560,6 +569,7 @@
 				4452407C2578124800DD5E60 /* Main.storyboard in Resources */,
 				44C40575257B861C0010581E /* FichierTableViewCell.xib in Resources */,
 				4467DFA7257AD054001F4146 /* musicMyselfDB.sqlite in Resources */,
+				445F9302257C242C009AF09A /* ListEveryFileTableViewCell.xib in Resources */,
 				44C14CF2257936190029879F /* GCDWebUploader.bundle in Resources */,
 				445240C1257826BC00DD5E60 /* bg_heart.png in Resources */,
 			);
@@ -595,6 +605,7 @@
 				44C14CDB257934840029879F /* GCDWebServerConnection.m in Sources */,
 				44C14CDF257934840029879F /* GCDWebServerStreamedResponse.m in Sources */,
 				445240752578124800DD5E60 /* AppDelegate.swift in Sources */,
+				445F92FB257C1AA8009AF09A /* ListDetailViewController.swift in Sources */,
 				44C40574257B861C0010581E /* FichierTableViewCell.swift in Sources */,
 				4467DFAF257AD5C2001F4146 /* Fichier.swift in Sources */,
 				4467DF93257ACA64001F4146 /* FMResultSet.m in Sources */,
@@ -608,6 +619,7 @@
 				4467DF92257ACA64001F4146 /* FMDatabasePool.m in Sources */,
 				44C14CDA257934840029879F /* GCDWebServer.m in Sources */,
 				44C14CDD257934840029879F /* GCDWebServerFileResponse.m in Sources */,
+				445F9301257C242C009AF09A /* ListEveryFileTableViewCell.swift in Sources */,
 				44C14CE1257934840029879F /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				4467DF91257ACA64001F4146 /* FMDatabase.m in Sources */,
 				4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */,

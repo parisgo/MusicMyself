@@ -28,10 +28,7 @@ class ListViewController: UIViewController {
         
         albums = Album().getList()
         collectionView.reloadData()
-        
-        var files = Fichier().getListByAlbum(aId: 1);
     }
-
     /*
     // MARK: - Navigation
 
@@ -60,20 +57,27 @@ extension ListViewController : UICollectionViewDataSource {
         
         return cell
     }
-    
-    /*
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 2000.0, height: 2000.0)
-    }
-     */
 }
 
 extension ListViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Hi", message: "\(albums[indexPath.row])", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "Test", message: "\(albums[indexPath.row])", preferredStyle: .alert)
+//        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+//        alert.addAction(action)
+//        self.present(alert, animated: true, completion: nil)
+        let cell = collectionView.cellForItem(at: indexPath)
+        self.performSegue(withIdentifier: "go2ListDetail", sender: cell)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "go2ListDetail" {
+                let tmp = segue.destination as! ListDetailViewController
+                
+                let cell = sender as! ListCollectionViewCell
+                let indexPath = self.collectionView.indexPath(for: cell)
+                tmp.album = albums[indexPath!.row]
+            }
+        }
+    }  
 }
