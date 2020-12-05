@@ -38,8 +38,7 @@ class FichierViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
-        let current = fichiers[indexPath.row]
-        cell?.fichier = current
+        cell?.fichier = fichiers[indexPath.row]
         
         return cell!
     }

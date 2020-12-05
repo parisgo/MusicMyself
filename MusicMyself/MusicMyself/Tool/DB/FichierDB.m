@@ -26,6 +26,12 @@ FMDatabase *db;
     
     if([db open]) {
         [db executeUpdate:@"insert into Fichier(FName, FTitle) values(?, ?)",name, nameNoExt];
+        
+        NSInteger idNew = [self getId: name];
+        if(idNew != 0) {
+            [db executeUpdate:@"insert into AlbumFichier(AID, FID) values(1, ?)", [NSNumber numberWithInt:idNew]];
+        }
+        
         [db close];
     }
     else {
@@ -37,12 +43,35 @@ FMDatabase *db;
     [self initDb];
     
     if([db open]) {
+        NSInteger idNew = [self getId: name];
+        if(idNew != 0) {
+            [db executeUpdate:@"delete from AlbumFichier where FID = ?", [NSNumber numberWithInt:idNew]];
+        }
+        
         [db executeUpdate:@"delete from Fichier where FName = ?", name];
         [db close];
     }
     else {
         NSLog(@"fail to open database");
     }
+}
+
++(NSInteger)getId:(NSString*)name {
+    NSInteger retId = 0;
+    
+    [self initDb];
+    
+    if([db open]) {
+        FMResultSet *s  = [db executeQuery:@"select FID from Fichier where FName = ?", name];
+        if ([s next]) {
+            retId = [s intForColumnIndex:0];
+        }
+    }
+    else {
+        NSLog(@"fail to open database");
+    }
+    
+    return retId;
 }
 
 @end

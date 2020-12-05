@@ -8,10 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List-->
+        <!--Fichier-->
         <scene sceneID="dPc-v7-Jgo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Kj-6R-hsM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="5jK-fm-puO" customClass="FichierViewController" customModule="MusicMyself" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3lg-M8-jyE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -26,19 +25,19 @@
                         <viewLayoutGuide key="safeArea" id="503-z0-Ken"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" image="books.vertical" catalog="system" id="FHz-Sr-aqb"/>
+                    <tabBarItem key="tabBarItem" title="Fichier" image="books.vertical" catalog="system" id="FHz-Sr-aqb"/>
                     <connections>
                         <outlet property="tableView" destination="AHj-ph-pLX" id="dcv-r7-EaE"/>
                         <segue destination="7Jt-DF-wbu" kind="show" identifier="go2FichierDetail" id="ajb-85-fVx"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Kj-6R-hsM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1734.7826086956522" y="471.42857142857139"/>
         </scene>
         <!--Fichier Detail View Controller-->
         <scene sceneID="kyB-oN-Aw9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tHc-Oj-hPp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="7Jt-DF-wbu" customClass="FichierDetailViewController" customModule="MusicMyself" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kXG-D8-1Jv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -98,25 +97,43 @@
                         <outlet property="fichierTitle" destination="MWI-sD-0wa" id="6B3-Ha-3ji"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tHc-Oj-hPp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2656.521739130435" y="480.80357142857139"/>
         </scene>
-        <!--Player-->
+        <!--List-->
         <scene sceneID="Kj9-qM-tVm">
             <objects>
-                <viewController id="bFC-zv-nCq" sceneMemberID="viewController">
+                <viewController id="bFC-zv-nCq" customClass="ListViewController" customModule="MusicMyself" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FGa-ZT-1T8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HPW-nK-sfT">
+                                <rect key="frame" x="0.0" y="35" width="149" height="176"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iW8-fa-jjs">
+                                    <size key="itemSize" width="183" height="190"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="aZy-qt-lG0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Player" image="restart" catalog="system" id="Q6W-UW-8dg"/>
+                    <tabBarItem key="tabBarItem" title="List" image="restart" catalog="system" id="Q6W-UW-8dg"/>
                     <navigationItem key="navigationItem" id="YzL-Jh-fte"/>
+                    <connections>
+                        <outlet property="collectionView" destination="HPW-nK-sfT" id="FIA-EO-2UY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgP-F8-htB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1735" y="-190"/>
+            <point key="canvasLocation" x="1734.7826086956522" y="-190.17857142857142"/>
         </scene>
         <!--Wifi-->
         <scene sceneID="npt-2N-MOm">
@@ -160,6 +177,9 @@
         <image name="books.vertical" catalog="system" width="128" height="103"/>
         <image name="link" catalog="system" width="128" height="122"/>
         <image name="restart" catalog="system" width="120" height="128"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

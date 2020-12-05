@@ -24,8 +24,19 @@ class Fichier: NSObject
     }
     
     func getList() -> [Fichier]! {
-        var result = [Fichier]()
         let sql = "select * from Fichier"
+        
+        return getListFromSql(sql: sql)
+    }
+    
+    func getListByAlbum(aId: Int) -> [Fichier]! {
+        let sql = "select Fichier.fid, fname,ftitle from Fichier inner join AlbumFichier on Fichier.FID = AlbumFichier.FID where AlbumFichier.AId = \(aId)"
+        
+        return getListFromSql(sql: sql)
+    }
+    
+    func getListFromSql(sql: String) -> [Fichier]! {
+        var result = [Fichier]()
         
         let db = BDD.instance.database!
         do {
