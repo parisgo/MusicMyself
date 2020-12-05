@@ -12,6 +12,7 @@ class FichierViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var fichiers: [Fichier]!
+    var currentInex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,9 @@ class FichierViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        let nib = UINib(nibName:"FichierTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,10 +37,29 @@ class FichierViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = fichiers[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
+        let current = fichiers[indexPath.row]
+        cell?.fichier = current
         
-        return cell
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentInex = indexPath.row
+        performSegue(withIdentifier: "go2FichierDetail", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "go2FichierDetail" {
+                let tmp = segue.destination as! FichierDetailViewController
+                tmp.fichier = fichiers[currentInex]
+            }
+        }
     }
 
     /*

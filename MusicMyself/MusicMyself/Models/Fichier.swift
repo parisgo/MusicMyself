@@ -12,6 +12,7 @@ class Fichier: NSObject
     var id: Int!
     var title: String!
     var name: String!
+    var author: String!
     
     override init() {
     }

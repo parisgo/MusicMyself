@@ -64,10 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let fileManager = FileManager.default
         if let tDocumentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
             let filePath =  tDocumentDirectory.appendingPathComponent("Files")
+            let imagePath =  tDocumentDirectory.appendingPathComponent("Images")
             
             if !fileManager.fileExists(atPath: filePath.path) {
                 do {
                     try fileManager.createDirectory(atPath: filePath.path, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.createDirectory(atPath: imagePath.path, withIntermediateDirectories: true, attributes: nil)
                 } catch {
                     NSLog("Couldn't create document directory")
                 }
