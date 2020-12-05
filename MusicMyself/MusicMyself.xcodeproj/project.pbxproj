@@ -44,6 +44,8 @@
 		44C14CE3257934840029879F /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C14CD5257934840029879F /* GCDWebServerFileRequest.m */; };
 		44C14CF2257936190029879F /* GCDWebUploader.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44C14CEF257936190029879F /* GCDWebUploader.bundle */; };
 		44C14CF3257936190029879F /* GCDWebUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C14CF1257936190029879F /* GCDWebUploader.m */; };
+		44D4A7E8257B6F7A008006D5 /* FichierVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D4A7E7257B6F7A008006D5 /* FichierVO.m */; };
+		44D4A7EF257B7169008006D5 /* FichierDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D4A7EE257B7169008006D5 /* FichierDB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,10 @@
 		44C14CEF257936190029879F /* GCDWebUploader.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GCDWebUploader.bundle; sourceTree = "<group>"; };
 		44C14CF0257936190029879F /* GCDWebUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebUploader.h; sourceTree = "<group>"; };
 		44C14CF1257936190029879F /* GCDWebUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebUploader.m; sourceTree = "<group>"; };
+		44D4A7E6257B6F7A008006D5 /* FichierVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FichierVO.h; sourceTree = "<group>"; };
+		44D4A7E7257B6F7A008006D5 /* FichierVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FichierVO.m; sourceTree = "<group>"; };
+		44D4A7ED257B7169008006D5 /* FichierDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FichierDB.h; sourceTree = "<group>"; };
+		44D4A7EE257B7169008006D5 /* FichierDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FichierDB.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +267,7 @@
 		445240AB257812AA00DD5E60 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				44D4A7D4257B6E87008006D5 /* DB */,
 				44C14CE7257934B00029879F /* MusicMyself-Bridging-Header.h */,
 				4467DF80257ACA64001F4146 /* FMDB */,
 				44C14CB6257934390029879F /* GCDWebServer */,
@@ -380,6 +387,25 @@
 				44C14CF1257936190029879F /* GCDWebUploader.m */,
 			);
 			path = GCDWebUploader;
+			sourceTree = "<group>";
+		};
+		44D4A7D4257B6E87008006D5 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				44D4A7EC257B7013008006D5 /* Model */,
+				44D4A7ED257B7169008006D5 /* FichierDB.h */,
+				44D4A7EE257B7169008006D5 /* FichierDB.m */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		44D4A7EC257B7013008006D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44D4A7E6257B6F7A008006D5 /* FichierVO.h */,
+				44D4A7E7257B6F7A008006D5 /* FichierVO.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,10 +561,12 @@
 				44C14CE1257934840029879F /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				4467DF91257ACA64001F4146 /* FMDatabase.m in Sources */,
 				4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */,
+				44D4A7EF257B7169008006D5 /* FichierDB.m in Sources */,
 				4467DF8E257ACA64001F4146 /* BDD.swift in Sources */,
 				44C14CE2257934840029879F /* GCDWebServerDataRequest.m in Sources */,
 				44C14CD8257934840029879F /* GCDWebServerRequest.m in Sources */,
 				44C14CE3257934840029879F /* GCDWebServerFileRequest.m in Sources */,
+				44D4A7E8257B6F7A008006D5 /* FichierVO.m in Sources */,
 				44C14CD9257934840029879F /* GCDWebServerFunctions.m in Sources */,
 				4467DF8F257ACA64001F4146 /* FMDatabaseQueue.m in Sources */,
 				44C14CD7257934840029879F /* GCDWebServerResponse.m in Sources */,

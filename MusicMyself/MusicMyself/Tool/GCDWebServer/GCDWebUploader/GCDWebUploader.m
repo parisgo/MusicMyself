@@ -47,6 +47,8 @@
 #import "GCDWebServerErrorResponse.h"
 #import "GCDWebServerFileResponse.h"
 
+#import "FichierDB.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GCDWebUploader (Methods)
@@ -314,6 +316,9 @@ NS_ASSUME_NONNULL_END
       [self.delegate webUploader:self didUploadFileAtPath:absolutePath];
     });
   }
+  
+  [FichierDB add:file.fileName];
+    
   return [GCDWebServerDataResponse responseWithJSONObject:@{} contentType:contentType];
 }
 
@@ -382,6 +387,9 @@ NS_ASSUME_NONNULL_END
       [self.delegate webUploader:self didDeleteItemAtPath:absolutePath];
     });
   }
+    
+  [FichierDB delete:itemName];
+    
   return [GCDWebServerDataResponse responseWithJSONObject:@{}];
 }
 
