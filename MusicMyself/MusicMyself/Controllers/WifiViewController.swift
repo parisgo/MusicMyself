@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WifiViewController: UIViewController, DirectoryMonitorDelegate {
+class WifiViewController: UIViewController {
     let documentsPath = NSHomeDirectory() + "/Documents/Files"
     
     override func viewDidLoad() {
@@ -18,16 +18,14 @@ class WifiViewController: UIViewController, DirectoryMonitorDelegate {
         
         let webUploader = GCDWebUploader(uploadDirectory: documentsPath)
         webUploader.start(withPort: 8080, bonjourName: "Web Based Uploads")
-        print("服务启动成功，使用你的浏览器访问：\(webUploader.serverURL)")
-    
-        monitor()
-    }
-    
-    func monitor()
-    {
-        let dm = DirectoryMonitor(url: URL(fileURLWithPath: documentsPath))
-        dm.delegate = self
-        dm.startMonitoring()
+        webUploader.allowedFileExtensions = ["mp3"]
+        
+        if webUploader.serverURL != nil {
+            print("服务启动成功，使用你的浏览器访问：\(webUploader.serverURL)")
+        }
+        else {
+            print("Can not connect with Wifi")
+        }
     }
 
     func addBackground() {
@@ -41,6 +39,16 @@ class WifiViewController: UIViewController, DirectoryMonitorDelegate {
         imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
         
         self.view.addSubview(imageViewBackground)
+    }
+    
+    
+    func monitor()
+    {
+        let dm = DirectoryMonitor(url: URL(fileURLWithPath: documentsPath))
+        
+        //DirectoryMonitorDelegate
+        //dm.delegate = self
+        //dm.startMonitoring()
     }
     
     func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {

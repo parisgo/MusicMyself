@@ -60,6 +60,8 @@
 		44C40589257B9EA80010581E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C40588257B9EA80010581E /* Helper.swift */; };
 		44D4A7E8257B6F7A008006D5 /* FichierVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D4A7E7257B6F7A008006D5 /* FichierVO.m */; };
 		44D4A7EF257B7169008006D5 /* FichierDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D4A7EE257B7169008006D5 /* FichierDB.m */; };
+		44D971D4257CD04E00D45F81 /* player_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D971D3257CD04E00D45F81 /* player_start.png */; };
+		44D971DF257CD23500D45F81 /* player_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D971DE257CD23400D45F81 /* player_stop.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,8 @@
 		44D4A7E7257B6F7A008006D5 /* FichierVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FichierVO.m; sourceTree = "<group>"; };
 		44D4A7ED257B7169008006D5 /* FichierDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FichierDB.h; sourceTree = "<group>"; };
 		44D4A7EE257B7169008006D5 /* FichierDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FichierDB.m; sourceTree = "<group>"; };
+		44D971D3257CD04E00D45F81 /* player_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_start.png; sourceTree = "<group>"; };
+		44D971DE257CD23400D45F81 /* player_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_stop.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +318,8 @@
 		445240B72578263C00DD5E60 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				44D971D3257CD04E00D45F81 /* player_start.png */,
+				44D971DE257CD23400D45F81 /* player_stop.png */,
 				44C40583257B90F70010581E /* tab_video@2x.png */,
 				44C4057E257B90E00010581E /* arr_back@2x.png */,
 				445240C0257826BC00DD5E60 /* bg_heart.png */,
@@ -562,11 +568,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				445F92E6257BD1F0009AF09A /* ListCollectionViewCell.xib in Resources */,
+				44D971DF257CD23500D45F81 /* player_stop.png in Resources */,
 				445240812578124B00DD5E60 /* LaunchScreen.storyboard in Resources */,
 				44C4057F257B90E00010581E /* arr_back@2x.png in Resources */,
 				4452407E2578124B00DD5E60 /* Assets.xcassets in Resources */,
 				44C40584257B90F70010581E /* tab_video@2x.png in Resources */,
 				4452407C2578124800DD5E60 /* Main.storyboard in Resources */,
+				44D971D4257CD04E00D45F81 /* player_start.png in Resources */,
 				44C40575257B861C0010581E /* FichierTableViewCell.xib in Resources */,
 				4467DFA7257AD054001F4146 /* musicMyselfDB.sqlite in Resources */,
 				445F9302257C242C009AF09A /* ListEveryFileTableViewCell.xib in Resources */,

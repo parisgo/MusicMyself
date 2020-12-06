@@ -40,15 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dbDestURL = URL(fileURLWithPath: documentsDirectory.appending("/musicMyselfDB.sqlite"))
         print(dbDestURL.absoluteString)
         
-        //test
-        if FileManager.default.fileExists(atPath: dbDestURL.path){
-            do {
-                try FileManager.default.removeItem(at: dbDestURL)
-            }
-            catch {
-                print(error.localizedDescription)
-            }
-        }
+        //Delete for test
+//        if FileManager.default.fileExists(atPath: dbDestURL.path){
+//            do {
+//                try FileManager.default.removeItem(at: dbDestURL)
+//            }
+//            catch {
+//                print(error.localizedDescription)
+//            }
+//        }
         
         if !FileManager.default.fileExists(atPath: dbDestURL.path){
             do {
