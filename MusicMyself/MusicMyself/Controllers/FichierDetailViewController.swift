@@ -15,6 +15,8 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
     
     var fichier: Fichier!
     
+    var callback : (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +40,11 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
                 self.fichierImg.image = UIImage.init(contentsOfFile: imagePath!)
             }
         }
+    }
+    
+    override func viewDidDisappear(_ animated : Bool) {
+        super.viewDidDisappear(animated)
+        callback?()
     }
     
     @objc func imageTapped(sender: UITapGestureRecognizer) {

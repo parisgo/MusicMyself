@@ -57,18 +57,12 @@ class FichierViewController: UIViewController, UITableViewDelegate, UITableViewD
             if identifier == "go2FichierDetail" {
                 let tmp = segue.destination as! FichierDetailViewController
                 tmp.fichier = fichiers[currentInex]
+                
+                tmp.callback = {
+                    self.fichiers = Fichier().getList()
+                    self.tableView.reloadData()
+                }                
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

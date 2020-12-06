@@ -8,23 +8,41 @@
 import UIKit
 
 class WifiViewController: UIViewController {
+    
+    @IBOutlet weak var txtViewInfo: UITextView!
+    
     let documentsPath = NSHomeDirectory() + "/Documents/Files"
+    var webUploader: GCDWebUploader!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addBackground()
+        //addBackground()
         
-        print(documentsPath)
+        webUploader = GCDWebUploader(uploadDirectory: documentsPath)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let webUploader = GCDWebUploader(uploadDirectory: documentsPath)
-        webUploader.start(withPort: 8080, bonjourName: "Web Based Uploads")
+        if(!webUploader.isRunning) {
+            webUploader.start(withPort: 8080, bonjourName: "Web Based Uploads")
+        }
         webUploader.allowedFileExtensions = ["mp3"]
         
         if webUploader.serverURL != nil {
-            print("服务启动成功，使用你的浏览器访问：\(webUploader.serverURL)")
+            txtViewInfo.text = "服务启动成功，使用你的浏览器访问：\(webUploader.serverURL)";
         }
         else {
-            print("Can not connect with Wifi")
+            txtViewInfo.text = "Can not connect with Wifi"
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isBeingDismissed {
+            if(webUploader.isRunning) {
+                webUploader.stop()
+            }
         }
     }
 

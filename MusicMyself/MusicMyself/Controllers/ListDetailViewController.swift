@@ -17,13 +17,13 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var labFileTitle: UILabel!
     @IBOutlet weak var labFileAuthor: UILabel!
+    @IBOutlet weak var imgFile: UIImageView!
     
     var album: Album!
     var fichiers: [Fichier]!
     
     var audioPlayer:AVAudioPlayer! = nil
     var currentFileIndex = 0
-    var isPlaying = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +38,9 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool)
     {
+        labFileTitle.text = "No file"
+        labFileAuthor.text = ""
+        
         if let tmp = album {
             listTitle.text = tmp.title
             fichiers = Fichier().getListByAlbum(aId: tmp.id);
@@ -49,9 +52,6 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             tableView.reloadData()
             
             let firstFile = fichiers[0]
-            labFileTitle.text = firstFile.title;
-            labFileAuthor.text = firstFile.author;
-            
             let imagePath = Helper.checkImage(id: firstFile.id)
             if(imagePath == nil) {
                 self.listImage.image = UIImage(named: "bg_heart.png")
@@ -59,9 +59,11 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             else {
                 self.listImage.image = UIImage.init(contentsOfFile: imagePath!)
             }
-        }
-        else {
-            labFileTitle.text = "No file"
+            
+            //set info File
+            labFileTitle.text = firstFile.title
+            labFileAuthor.text = firstFile.author
+            setFileImage(id: firstFile.id)
         }
         
         showButtonImage(isStart: true)
@@ -115,6 +117,8 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func play(){
+        setPlayDameon();
+        
         let currentFile = fichiers[currentFileIndex]
         let filePath = Helper.checkFile(name: currentFile.name)
         guard filePath != nil else {
@@ -127,8 +131,29 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         labFileTitle.text = currentFile.title
         labFileAuthor.text = currentFile.author
+        setFileImage(id: currentFile.id)
         
         showButtonImage(isStart: false)
+    }
+    
+    func setFileImage(id: Int) {
+        let imagePath = Helper.checkImage(id: id)
+        if(imagePath == nil) {
+            self.imgFile.image = UIImage(named: "bg_heart.png")
+        }
+        else {
+            self.imgFile.image = UIImage.init(contentsOfFile: imagePath!)
+        }
+    }
+    
+    func setPlayDameon() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+        } catch _ { }
+        
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch _ { }
     }
 }
 
