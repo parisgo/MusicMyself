@@ -120,6 +120,11 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O4D-Ll-sfo" customClass="PlayerView" customModule="MusicMyself" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aZy-qt-lG0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -127,6 +132,7 @@
                     <navigationItem key="navigationItem" id="YzL-Jh-fte"/>
                     <connections>
                         <outlet property="collectionView" destination="HPW-nK-sfT" id="FIA-EO-2UY"/>
+                        <outlet property="playView" destination="O4D-Ll-sfo" id="xnA-3E-b3d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgP-F8-htB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -170,37 +176,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uL-OC-eyw">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uL-OC-eyw" customClass="PlayerView" customModule="MusicMyself" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="568" width="375" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3a-rS-CHb">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZ4-DB-Vtg">
-                                        <rect key="frame" x="67" y="8" width="247" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51t-5l-l50">
-                                        <rect key="frame" x="67" y="30" width="247" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctl-VO-5eZ">
-                                        <rect key="frame" x="322" y="2" width="45" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Play" image="player_start.png"/>
-                                        <connections>
-                                            <action selector="btnStartOrStop:" destination="7fd-yQ-hqh" eventType="touchUpInside" id="91R-po-NMm"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
                         </subviews>
@@ -210,12 +188,9 @@
                     <navigationItem key="navigationItem" id="ABf-3a-3RT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="btnStartStop" destination="ctl-VO-5eZ" id="LWV-pa-BcV"/>
-                        <outlet property="imgFile" destination="F3a-rS-CHb" id="4q6-w0-MHo"/>
-                        <outlet property="labFileAuthor" destination="51t-5l-l50" id="QSw-xj-V5B"/>
-                        <outlet property="labFileTitle" destination="sZ4-DB-Vtg" id="XLG-4F-Nq0"/>
                         <outlet property="listImage" destination="Wqw-KQ-meS" id="ove-yW-M9a"/>
                         <outlet property="listTitle" destination="iGc-jC-38Z" id="wfW-ai-VPh"/>
+                        <outlet property="playerView" destination="2uL-OC-eyw" id="b6H-2G-agF"/>
                         <outlet property="tableView" destination="YrA-K7-JSB" id="qKO-RH-vA7"/>
                     </connections>
                 </viewController>
@@ -330,7 +305,6 @@
         <image name="arr_back.png" width="22" height="22"/>
         <image name="books.vertical" catalog="system" width="128" height="103"/>
         <image name="link" catalog="system" width="128" height="122"/>
-        <image name="player_start.png" width="142.39999389648438" height="142.39999389648438"/>
         <image name="restart" catalog="system" width="120" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -13,17 +13,11 @@ class ListDetailViewController: UIViewController {
     @IBOutlet weak var listImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var listTitle: UILabel!
-    @IBOutlet weak var btnStartStop: UIButton!
     
-    @IBOutlet weak var labFileTitle: UILabel!
-    @IBOutlet weak var labFileAuthor: UILabel!
-    @IBOutlet weak var imgFile: UIImageView!
+    @IBOutlet weak var playerView: PlayerView!
     
     var album: Album!
     var fichiers: [Fichier]!
-    
-    var audioPlayer:AVAudioPlayer! = nil
-    var currentFileIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +32,6 @@ class ListDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
-        if(audioPlayer != nil && audioPlayer.isPlaying) {
-            return;
-        }
-        
-        labFileTitle.text = "No file"
-        labFileAuthor.text = ""
-        
         if let tmp = album {
             listTitle.text = tmp.title
             fichiers = Fichier().getListByAlbum(aId: tmp.id);
@@ -64,80 +51,14 @@ class ListDetailViewController: UIViewController {
                 self.listImage.image = UIImage.init(contentsOfFile: imagePath!)
             }
             
-            //set info File
-            labFileTitle.text = firstFile.title
-            labFileAuthor.text = firstFile.author
-            setFileImage(id: firstFile.id)
+            playerView.setCurrentInfo()
         }
         
-        showButtonImage(isStart: true)
+        playerView.showButtonImage(isStart: true)
     }
 
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func btnStartOrStop(_ sender: Any) {
-        if(audioPlayer != nil && audioPlayer.isPlaying) {
-            audioPlayer.stop()
-            showButtonImage(isStart: true)
-        }
-        else {
-            play()
-            showButtonImage(isStart: false)
-        }
-    }
-    
-    func showButtonImage(isStart: Bool) {
-        let play = UIImage(named: "player_start.png")
-        let stop = UIImage(named: "player_stop.png")
-        
-        if(isStart) {
-            btnStartStop.setImage(play, for: .normal)
-        }
-        else {
-            btnStartStop.setImage(stop, for: .normal)
-        }
-    }   
-    
-    func play(){
-        setPlayDameon();
-        
-        let currentFile = fichiers[currentFileIndex]
-        let filePath = Helper.checkFile(name: currentFile.name)
-        guard filePath != nil else {
-            return;
-        }
-        
-        audioPlayer = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath!))
-        audioPlayer.delegate = self;
-        audioPlayer.play()
-        
-        labFileTitle.text = currentFile.title
-        labFileAuthor.text = currentFile.author
-        setFileImage(id: currentFile.id)
-        
-        showButtonImage(isStart: false)
-    }
-    
-    func setFileImage(id: Int) {
-        let imagePath = Helper.checkImage(id: id)
-        if(imagePath == nil) {
-            self.imgFile.image = UIImage(named: "bg_heart.png")
-        }
-        else {
-            self.imgFile.image = UIImage.init(contentsOfFile: imagePath!)
-        }
-    }
-    
-    func setPlayDameon() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        } catch _ { }
-        
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch _ { }
     }
 }
 
@@ -158,20 +79,11 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentFileIndex = indexPath.row;
-        play()
-    }
-}
-
-extension ListDetailViewController: AVAudioPlayerDelegate{
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
-        if(currentFileIndex == fichiers.count - 1) {
-            currentFileIndex = 0;
-        }
-        else {
-            currentFileIndex+=1
-        }
+        MyPlayer.instance.fichiers = fichiers
         
-        play()
+        MyPlayer.instance.currentFileIndex = indexPath.row;
+        
+        playerView.setCurrentInfo()
+        playerView.play()
     }
 }

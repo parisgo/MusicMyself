@@ -9,6 +9,7 @@ import UIKit
 
 class ListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var playView: PlayerView!
     
     var albums: [Album]!
     
@@ -28,6 +29,16 @@ class ListViewController: UIViewController {
         
         albums = Album().getList()
         collectionView.reloadData()
+        
+        if(MyPlayer.instance.audioPlayer == nil) {
+            MyPlayer.instance.fichiers = Fichier().getListByAlbum(aId: 1);
+        }
+        else {
+            if(MyPlayer.instance.audioPlayer.isPlaying) {
+            }
+        }
+        
+        playView.setCurrentInfo()
     }
 }
 
