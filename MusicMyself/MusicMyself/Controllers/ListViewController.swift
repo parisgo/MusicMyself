@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 class ListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -34,8 +35,7 @@ class ListViewController: UIViewController {
             MyPlayer.instance.fichiers = Fichier().getListByAlbum(aId: 1);
         }
         else {
-            if(MyPlayer.instance.audioPlayer.isPlaying) {
-            }
+            MyPlayer.instance.audioPlayer.delegate = self
         }
         
         playView.setCurrentInfo()
@@ -89,4 +89,17 @@ extension ListViewController : UICollectionViewDelegate {
         }
     }
      */
+}
+
+extension ListViewController: AVAudioPlayerDelegate{
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+        if(MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count - 1) {
+            MyPlayer.instance.currentFileIndex = 0;
+        }
+        else {
+            MyPlayer.instance.currentFileIndex+=1
+        }
+        
+        playView.play()
+    }
 }

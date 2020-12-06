@@ -206,7 +206,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="开启服务功能后，在同一网络，就可以上传文件了" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Er-TV-UON">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="开启服务功能后，在同一网络，就可以上传文件了" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Er-TV-UON">
                                 <rect key="frame" x="16" y="71" width="359" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

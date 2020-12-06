@@ -85,5 +85,22 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         
         playerView.setCurrentInfo()
         playerView.play()
+        
+        if(MyPlayer.instance.audioPlayer != nil) {
+            MyPlayer.instance.audioPlayer.delegate = self
+        }
+    }
+}
+
+extension ListDetailViewController: AVAudioPlayerDelegate{
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+        if(MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count - 1) {
+            MyPlayer.instance.currentFileIndex = 0;
+        }
+        else {
+            MyPlayer.instance.currentFileIndex+=1
+        }
+        
+        playerView.play()
     }
 }

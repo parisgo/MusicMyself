@@ -141,7 +141,7 @@ extension PlayerView: AVAudioPlayerDelegate{
         else {
             MyPlayer.instance.currentFileIndex+=1
         }
-        
+
         play()
     }
 }
