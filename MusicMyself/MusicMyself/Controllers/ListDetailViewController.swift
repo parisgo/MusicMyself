@@ -54,7 +54,9 @@ class ListDetailViewController: UIViewController {
             playerView.setCurrentInfo()
         }
         
-        playerView.showButtonImage(isStart: true)
+        if MyPlayer.instance.audioPlayer != nil {
+            playerView.showButtonImage(isStart: !MyPlayer.instance.audioPlayer.isPlaying)
+        }        
     }
 
     @IBAction func btnBack(_ sender: Any) {

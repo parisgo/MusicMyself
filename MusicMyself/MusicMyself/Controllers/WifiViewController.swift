@@ -42,6 +42,7 @@ class WifiViewController: UIViewController {
         else {
             if(webUploader.isRunning) {
                 webUploader.stop()
+                txtViewInfo.text = ""
             }
         }
     }
