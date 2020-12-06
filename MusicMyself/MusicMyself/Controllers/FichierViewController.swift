@@ -49,7 +49,18 @@ class FichierViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentInex = indexPath.row
-        performSegue(withIdentifier: "go2FichierDetail", sender: nil)
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "FichierDetailViewController") {
+            let tmp = controller as! FichierDetailViewController
+            tmp.fichier = fichiers[currentInex]
+            
+            tmp.callback = {
+                self.fichiers = Fichier().getList()
+                self.tableView.reloadData()
+            }
+            
+            self.navigationController?.pushViewController(tmp, animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

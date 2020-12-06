@@ -29,16 +29,6 @@ class ListViewController: UIViewController {
         albums = Album().getList()
         collectionView.reloadData()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension ListViewController : UICollectionViewDataSource {
@@ -64,11 +54,18 @@ extension ListViewController : UICollectionViewDelegate {
 //        let alert = UIAlertController(title: "Test", message: "\(albums[indexPath.row])", preferredStyle: .alert)
 //        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
 //        alert.addAction(action)
-//        self.present(alert, animated: true, completion: nil)
-        let cell = collectionView.cellForItem(at: indexPath)
-        self.performSegue(withIdentifier: "go2ListDetail", sender: cell)
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "ListDetailViewController") {
+            let tmp = controller as! ListDetailViewController
+            tmp.album = albums[indexPath.row]
+                
+            //present(controller, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tmp, animated: true)
+        }
     }
     
+    /*
+    self.performSegue(withIdentifier: "go2ListDetail", sender: cell)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "go2ListDetail" {
@@ -79,5 +76,6 @@ extension ListViewController : UICollectionViewDelegate {
                 tmp.album = albums[indexPath!.row]
             }
         }
-    }  
+    }
+     */
 }

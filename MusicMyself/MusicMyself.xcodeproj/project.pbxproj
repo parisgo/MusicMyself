@@ -62,6 +62,7 @@
 		44D4A7EF257B7169008006D5 /* FichierDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D4A7EE257B7169008006D5 /* FichierDB.m */; };
 		44D971D4257CD04E00D45F81 /* player_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D971D3257CD04E00D45F81 /* player_start.png */; };
 		44D971DF257CD23500D45F81 /* player_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D971DE257CD23400D45F81 /* player_stop.png */; };
+		44D97223257D138600D45F81 /* playlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D97222257D138600D45F81 /* playlist.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,7 @@
 		44D4A7EE257B7169008006D5 /* FichierDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FichierDB.m; sourceTree = "<group>"; };
 		44D971D3257CD04E00D45F81 /* player_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_start.png; sourceTree = "<group>"; };
 		44D971DE257CD23400D45F81 /* player_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_stop.png; sourceTree = "<group>"; };
+		44D97222257D138600D45F81 /* playlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlist.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +320,7 @@
 		445240B72578263C00DD5E60 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				44D97222257D138600D45F81 /* playlist.png */,
 				44D971D3257CD04E00D45F81 /* player_start.png */,
 				44D971DE257CD23400D45F81 /* player_stop.png */,
 				44C40583257B90F70010581E /* tab_video@2x.png */,
@@ -570,6 +573,7 @@
 				445F92E6257BD1F0009AF09A /* ListCollectionViewCell.xib in Resources */,
 				44D971DF257CD23500D45F81 /* player_stop.png in Resources */,
 				445240812578124B00DD5E60 /* LaunchScreen.storyboard in Resources */,
+				44D97223257D138600D45F81 /* playlist.png in Resources */,
 				44C4057F257B90E00010581E /* arr_back@2x.png in Resources */,
 				4452407E2578124B00DD5E60 /* Assets.xcassets in Resources */,
 				44C40584257B90F70010581E /* tab_video@2x.png in Resources */,
