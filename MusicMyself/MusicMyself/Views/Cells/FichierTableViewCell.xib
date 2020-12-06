@@ -9,28 +9,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="FichierTableViewCell" customModule="MusicMyself" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="371" height="80"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="KGk-i7-Jjw" customClass="FichierTableViewCell" customModule="MusicMyself" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="57"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="371" height="80"/>
+                <rect key="frame" x="0.0" y="0.0" width="372" height="57"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SwD-1X-CGD">
-                        <rect key="frame" x="0.0" y="0.0" width="95" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="66" height="56"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akt-Ri-GIJ">
-                        <rect key="frame" x="103" y="55" width="38" height="18"/>
+                        <rect key="frame" x="74" y="33" width="298" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhE-LX-5Hu">
-                        <rect key="frame" x="103" y="14" width="268" height="25"/>
+                        <rect key="frame" x="74" y="3" width="298" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -42,7 +42,7 @@
                 <outlet property="fichierImage" destination="SwD-1X-CGD" id="ir5-Tn-KpC"/>
                 <outlet property="title" destination="hhE-LX-5Hu" id="Gfh-kn-9y2"/>
             </connections>
-            <point key="canvasLocation" x="176.08695652173915" y="103.125"/>
+            <point key="canvasLocation" x="176.81159420289856" y="95.424107142857139"/>
         </tableViewCell>
     </objects>
 </document>

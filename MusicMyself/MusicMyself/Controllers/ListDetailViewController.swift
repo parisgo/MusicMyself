@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class ListDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListDetailViewController: UIViewController {
 
     @IBOutlet weak var listImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -38,6 +38,10 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool)
     {
+        if(audioPlayer != nil && audioPlayer.isPlaying) {
+            return;
+        }
+        
         labFileTitle.text = "No file"
         labFileAuthor.text = ""
         
@@ -94,27 +98,7 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         else {
             btnStartStop.setImage(stop, for: .normal)
         }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (fichiers != nil) ? fichiers.count : 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListEveryFileTableViewCell
-        cell?.fichier = fichiers[indexPath.row]
-        
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentFileIndex = indexPath.row;
-        play()
-    }
+    }   
     
     func play(){
         setPlayDameon();
@@ -154,6 +138,28 @@ class ListDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch _ { }
+    }
+}
+
+extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (fichiers != nil) ? fichiers.count : 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListEveryFileTableViewCell
+        cell?.fichier = fichiers[indexPath.row]
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentFileIndex = indexPath.row;
+        play()
     }
 }
 

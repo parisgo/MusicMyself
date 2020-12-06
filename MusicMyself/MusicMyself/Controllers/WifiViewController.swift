@@ -23,17 +23,26 @@ class WifiViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if(!webUploader.isRunning) {
-            webUploader.start(withPort: 8080, bonjourName: "Web Based Uploads")
-        }
-        webUploader.allowedFileExtensions = ["mp3"]
-        
-        if webUploader.serverURL != nil {
-            txtViewInfo.text = "服务启动成功，使用你的浏览器访问：\(webUploader.serverURL)";
+    }
+    
+    @IBAction func clickStart(_ sender: Any) {
+        if ((sender as AnyObject).isOn == true) {
+            if(!webUploader.isRunning) {
+                webUploader.start(withPort: 8080, bonjourName: "Web Based Uploads")
+            }
+            webUploader.allowedFileExtensions = ["mp3"]
+            
+            if webUploader.serverURL != nil {
+                txtViewInfo.text = "服务启动成功，可以使用你的浏览器访问：\(webUploader.serverURL!)";
+            }
+            else {
+                txtViewInfo.text = "Can not connect with Wifi"
+            }
         }
         else {
-            txtViewInfo.text = "Can not connect with Wifi"
+            if(webUploader.isRunning) {
+                webUploader.stop()
+            }
         }
     }
     
