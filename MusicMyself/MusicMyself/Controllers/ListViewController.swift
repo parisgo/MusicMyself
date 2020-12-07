@@ -63,10 +63,6 @@ extension ListViewController : UICollectionViewDataSource {
 
 extension ListViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let alert = UIAlertController(title: "Test", message: "\(albums[indexPath.row])", preferredStyle: .alert)
-//        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-//        alert.addAction(action)
-        
         if let controller = storyboard?.instantiateViewController(withIdentifier: "ListDetailViewController") {
             let tmp = controller as! ListDetailViewController
             tmp.album = albums[indexPath.row]
@@ -75,32 +71,12 @@ extension ListViewController : UICollectionViewDelegate {
             self.navigationController?.pushViewController(tmp, animated: true)
         }
     }
-    
-    /*
-    self.performSegue(withIdentifier: "go2ListDetail", sender: cell)
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            if identifier == "go2ListDetail" {
-                let tmp = segue.destination as! ListDetailViewController
-                
-                let cell = sender as! ListCollectionViewCell
-                let indexPath = self.collectionView.indexPath(for: cell)
-                tmp.album = albums[indexPath!.row]
-            }
-        }
-    }
-     */
 }
 
 extension ListViewController: AVAudioPlayerDelegate{
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
-        if(MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count - 1) {
-            MyPlayer.instance.currentFileIndex = 0;
+        func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+            playView.playerDidFinish()
         }
-        else {
-            MyPlayer.instance.currentFileIndex+=1
-        }
-        
-        playView.play()
     }
 }

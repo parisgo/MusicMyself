@@ -20,7 +20,7 @@ class MyPlayer {
     private init() {}
 }
 
-class PlayerView: UIView, UIActionSheetDelegate {
+class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var btnStartStop: UIButton!    
     @IBOutlet weak var labFileTitle: UILabel!
@@ -131,6 +131,7 @@ class PlayerView: UIView, UIActionSheetDelegate {
             return
         }
         
+        print("play index: \(MyPlayer.instance.currentFileIndex)")
         let currentFile = MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex]
         let filePath = Helper.checkFile(name: currentFile.name)
         guard filePath != nil else {
@@ -183,10 +184,8 @@ class PlayerView: UIView, UIActionSheetDelegate {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch _ { }
     }
-}
-
-extension PlayerView: AVAudioPlayerDelegate{
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+    
+    func playerDidFinish() {
         if MyPlayer.instance.isRepeat {
             play()
             return
@@ -204,5 +203,9 @@ extension PlayerView: AVAudioPlayerDelegate{
         }
         
         play()
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+        self.playerDidFinish()
     }
 }
