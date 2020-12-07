@@ -11,7 +11,6 @@
 		443ECF3C25792AB50009A3A2 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */; };
 		445240752578124800DD5E60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240742578124800DD5E60 /* AppDelegate.swift */; };
 		445240772578124800DD5E60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240762578124800DD5E60 /* SceneDelegate.swift */; };
-		445240792578124800DD5E60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240782578124800DD5E60 /* ViewController.swift */; };
 		4452407C2578124800DD5E60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4452407A2578124800DD5E60 /* Main.storyboard */; };
 		4452407E2578124B00DD5E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4452407D2578124B00DD5E60 /* Assets.xcassets */; };
 		445240812578124B00DD5E60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4452407F2578124B00DD5E60 /* LaunchScreen.storyboard */; };
@@ -65,6 +64,7 @@
 		44D971D4257CD04E00D45F81 /* player_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D971D3257CD04E00D45F81 /* player_start.png */; };
 		44D971DF257CD23500D45F81 /* player_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D971DE257CD23400D45F81 /* player_stop.png */; };
 		44D97223257D138600D45F81 /* playlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D97222257D138600D45F81 /* playlist.png */; };
+		44ECF331257E33F8003D7919 /* player_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 44ECF330257E33F8003D7919 /* player_more.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,6 @@
 		445240712578124800DD5E60 /* MusicMyself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMyself.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		445240742578124800DD5E60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		445240762578124800DD5E60 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		445240782578124800DD5E60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4452407B2578124800DD5E60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4452407D2578124B00DD5E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		445240802578124B00DD5E60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -174,6 +173,7 @@
 		44D971D3257CD04E00D45F81 /* player_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_start.png; sourceTree = "<group>"; };
 		44D971DE257CD23400D45F81 /* player_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_stop.png; sourceTree = "<group>"; };
 		44D97222257D138600D45F81 /* playlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlist.png; sourceTree = "<group>"; };
+		44ECF330257E33F8003D7919 /* player_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_more.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,7 +283,6 @@
 		445240A82578128E00DD5E60 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				445240782578124800DD5E60 /* ViewController.swift */,
 				445240B2257824FB00DD5E60 /* WifiViewController.swift */,
 				4467DFB3257AD6B3001F4146 /* FichierViewController.swift */,
 				44C40579257B8CD90010581E /* FichierDetailViewController.swift */,
@@ -325,6 +324,7 @@
 		445240B72578263C00DD5E60 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				44ECF330257E33F8003D7919 /* player_more.png */,
 				44D97222257D138600D45F81 /* playlist.png */,
 				44D971D3257CD04E00D45F81 /* player_start.png */,
 				44D971DE257CD23400D45F81 /* player_stop.png */,
@@ -595,6 +595,7 @@
 				44D971D4257CD04E00D45F81 /* player_start.png in Resources */,
 				44C40575257B861C0010581E /* FichierTableViewCell.xib in Resources */,
 				4467DFA7257AD054001F4146 /* musicMyselfDB.sqlite in Resources */,
+				44ECF331257E33F8003D7919 /* player_more.png in Resources */,
 				445F9302257C242C009AF09A /* ListEveryFileTableViewCell.xib in Resources */,
 				44C14CF2257936190029879F /* GCDWebUploader.bundle in Resources */,
 				445240C1257826BC00DD5E60 /* bg_heart.png in Resources */,
@@ -625,7 +626,6 @@
 			files = (
 				445F92DF257BCD68009AF09A /* ListViewController.swift in Sources */,
 				445F92E5257BD1F0009AF09A /* ListCollectionViewCell.swift in Sources */,
-				445240792578124800DD5E60 /* ViewController.swift in Sources */,
 				44D2DACD257D353D006FA187 /* PlayerView.swift in Sources */,
 				44C14CDE257934840029879F /* GCDWebServerDataResponse.m in Sources */,
 				445240B3257824FB00DD5E60 /* WifiViewController.swift in Sources */,

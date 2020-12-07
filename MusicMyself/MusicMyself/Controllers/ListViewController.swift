@@ -16,6 +16,7 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Playlist"
 
         // Do any additional setup after loading the view.
         collectionView.delegate = self

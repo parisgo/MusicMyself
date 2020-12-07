@@ -16,6 +16,7 @@ class WifiViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Upload File"
         //addBackground()
         
         webUploader = GCDWebUploader(uploadDirectory: documentsPath)

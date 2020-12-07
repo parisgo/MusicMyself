@@ -16,6 +16,7 @@ class FichierViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "All files"
 
         // Do any additional setup after loading the view.
         tableView.delegate = self

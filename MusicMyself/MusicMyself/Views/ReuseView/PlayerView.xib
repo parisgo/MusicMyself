@@ -44,11 +44,19 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4C-rs-7Ea">
-                            <rect key="frame" x="322" y="2" width="45" height="45"/>
+                            <rect key="frame" x="280" y="2" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Play" image="player_start.png"/>
                             <connections>
                                 <action selector="btnStartOrStop:" destination="-1" eventType="touchUpInside" id="4sj-az-3Sv"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHD-om-WUu">
+                            <rect key="frame" x="329" y="2" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button" image="player_more.png"/>
+                            <connections>
+                                <action selector="btnMore:" destination="-1" eventType="touchUpInside" id="TO2-F8-5lB"/>
                             </connections>
                         </button>
                     </subviews>
@@ -62,6 +70,7 @@
         </view>
     </objects>
     <resources>
+        <image name="player_more.png" width="82.400001525878906" height="82.400001525878906"/>
         <image name="player_start.png" width="142.39999389648438" height="142.39999389648438"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
