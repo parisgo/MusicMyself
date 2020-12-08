@@ -7,6 +7,7 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 class MyPlayer {
     static let instance = MyPlayer()
@@ -58,24 +59,10 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         let actionSheet = UIAlertController(title: "Action", message: "You want", preferredStyle: .actionSheet)
         
         let actPrevious = UIAlertAction(title: "Previous", style: .default) { (action) in
-            if MyPlayer.instance.currentFileIndex == 0 {
-                MyPlayer.instance.currentFileIndex = MyPlayer.instance.fichiers.count - 1
-            }
-            else {
-                MyPlayer.instance.currentFileIndex -= 1
-            }
-            
-            self.play()
+            self.previous()
         }
         let actNext = UIAlertAction(title: "Next", style: .default) { (action) in
-            if MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count - 1 {
-                MyPlayer.instance.currentFileIndex = 0
-            }
-            else {
-                MyPlayer.instance.currentFileIndex += 1
-            }
-            
-            self.play()
+            self.next()
         }
         
         let repeatTitle = MyPlayer.instance.isRepeat ? "No repeat" : "Repeat"
@@ -101,14 +88,7 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
     }
     
     @IBAction func btnStartOrStop(_ sender: Any) {
-        if(MyPlayer.instance.audioPlayer != nil && MyPlayer.instance.audioPlayer.isPlaying) {
-            MyPlayer.instance.audioPlayer.stop()
-            showButtonImage(isStart: true)
-        }
-        else {
-            play()
-            showButtonImage(isStart: false)
-        }
+        self.startOrStop()
     }
     
     func showButtonImage(isStart: Bool) {
@@ -147,6 +127,8 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         setFileImage(id: currentFile.id)
         
         showButtonImage(isStart: false)
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyArtist : currentFile.author,  MPMediaItemPropertyTitle : currentFile.title]
     }
     
     func setCurrentInfo() {
@@ -203,6 +185,39 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         }
         
         play()
+    }
+    
+    func startOrStop() {
+        if(MyPlayer.instance.audioPlayer != nil && MyPlayer.instance.audioPlayer.isPlaying) {
+            MyPlayer.instance.audioPlayer.stop()
+            showButtonImage(isStart: true)
+        }
+        else {
+            play()
+            showButtonImage(isStart: false)
+        }
+    }
+    
+    func previous() {
+        if MyPlayer.instance.currentFileIndex == 0 {
+            MyPlayer.instance.currentFileIndex = MyPlayer.instance.fichiers.count - 1
+        }
+        else {
+            MyPlayer.instance.currentFileIndex -= 1
+        }
+        
+        self.play()
+    }
+    
+    func next() {
+        if MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count - 1 {
+            MyPlayer.instance.currentFileIndex = 0
+        }
+        else {
+            MyPlayer.instance.currentFileIndex += 1
+        }
+        
+        self.play()
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){

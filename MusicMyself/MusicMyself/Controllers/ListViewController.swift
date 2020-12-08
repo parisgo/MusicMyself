@@ -24,6 +24,13 @@ class ListViewController: UIViewController {
         
         let nib = UINib(nibName:"ListCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "cellList")
+        
+        //LockScreen media control registre
+        if UIApplication.shared.responds(to: #selector(UIApplication.beginReceivingRemoteControlEvents)){
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            UIApplication.shared.beginBackgroundTask(expirationHandler: { () -> Void in
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +47,23 @@ class ListViewController: UIViewController {
         }
         
         playView.setCurrentInfo()
+    }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        if event!.type == UIEvent.EventType.remoteControl{
+            switch event!.subtype{
+            case UIEventSubtype.remoteControlPlay:
+                playView.startOrStop()
+            case UIEventSubtype.remoteControlPause:
+                playView.startOrStop()
+            case UIEventSubtype.remoteControlNextTrack:
+                playView.next()
+            case UIEventSubtype.remoteControlPreviousTrack:
+                playView.previous()
+            default:
+                print("remoteControlReceived")
+            }
+        }
     }
 }
 

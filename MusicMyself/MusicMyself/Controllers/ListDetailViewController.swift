@@ -28,6 +28,13 @@ class ListDetailViewController: UIViewController {
         
         let nib = UINib(nibName:"ListEveryFileTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
+        
+        //LockScreen Media control registre
+        if UIApplication.shared.responds(to: #selector(UIApplication.beginReceivingRemoteControlEvents)){
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            UIApplication.shared.beginBackgroundTask(expirationHandler: { () -> Void in
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -61,6 +68,23 @@ class ListDetailViewController: UIViewController {
 
     @IBAction func btnBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        if event!.type == UIEvent.EventType.remoteControl{
+            switch event!.subtype{
+            case UIEventSubtype.remoteControlPlay:
+                playerView.startOrStop()
+            case UIEventSubtype.remoteControlPause:
+                playerView.startOrStop()
+            case UIEventSubtype.remoteControlNextTrack:
+                playerView.next()
+            case UIEventSubtype.remoteControlPreviousTrack:
+                playerView.previous()
+            default:
+                print("remoteControlReceived")
+            }
+        }
     }
 }
 
