@@ -20,3 +20,9 @@ extension UIView {
         return nil
     }
 }
+
+extension UITextField {
+    var isEmpty: Bool {
+        return text?.isEmpty ?? true
+    }
+}

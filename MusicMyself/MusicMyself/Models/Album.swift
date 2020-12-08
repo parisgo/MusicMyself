@@ -20,6 +20,10 @@ class Album: NSObject
         self.title = title
     }
     
+    init(title:String) {
+        self.title = title
+    }
+    
     func getList() -> [Album]! {
         var result = [Album]()
         let sql = "select * from Album"
@@ -36,6 +40,7 @@ class Album: NSObject
                     
                     result.append(tmp)
                 }
+                db.close()
             }
         }
         catch{
@@ -45,13 +50,13 @@ class Album: NSObject
         return result
     }
     
-    func add(album: Album, fileIds: [Int])  {
-        let sqlAlbum = "insert into Album(ATitle) value(\(album.title!))"
+    func add(album: Album, fileIds: [Int]) {
+        let sqlAlbum = "insert into Album(ATitle) values(?)"
         
         let db = BDD.instance.database!
         do {
             if db.open() {
-                _ = try db.executeUpdate(sqlAlbum, values: nil)
+                _ = try db.executeUpdate(sqlAlbum, values: [album.title!])
                 let albumId = db.lastInsertRowId
                 
                 guard albumId != 0 else {
@@ -60,6 +65,8 @@ class Album: NSObject
                 for i in fileIds {
                     try db.executeUpdate("insert into AlbumFichier(AID, FID) values(?,?)", values: [albumId, i])
                 }
+                
+                db.close()
             }
         }
         catch{

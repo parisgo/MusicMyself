@@ -51,6 +51,8 @@ class Fichier: NSObject
                     
                     result.append(tmp)
                 }
+                
+                db.close()
             }
         }
         catch{

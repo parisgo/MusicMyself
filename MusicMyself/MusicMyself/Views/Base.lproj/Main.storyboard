@@ -109,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HPW-nK-sfT">
-                                <rect key="frame" x="0.0" y="35" width="149" height="210"/>
+                                <rect key="frame" x="0.0" y="35" width="375" height="533"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iW8-fa-jjs">
@@ -226,17 +226,35 @@
                                                 <action selector="backClick:" destination="GmW-ft-BVT" id="4UF-DV-aZ4"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="OK" image="square.and.arrow.up" catalog="system" id="O9A-Kg-qR4"/>
+                                        <barButtonItem key="rightBarButtonItem" title="OK" image="square.and.arrow.up" catalog="system" id="O9A-Kg-qR4">
+                                            <connections>
+                                                <action selector="addClick:" destination="GmW-ft-BVT" id="6sv-1t-fUm"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C7S-tz-onH">
-                                <rect key="frame" x="0.0" y="246" width="375" height="421"/>
+                                <rect key="frame" x="0.0" y="285" width="375" height="382"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-XE-762">
+                                <rect key="frame" x="321" y="208" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ok"/>
+                                <connections>
+                                    <action selector="addClick:" destination="GmW-ft-BVT" eventType="touchUpInside" id="3BG-bZ-sbr"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m0W-qJ-LIO">
+                                <rect key="frame" x="59" y="206" width="249" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9E-lA-e9a">
-                                <rect key="frame" x="157" y="208" width="52" height="30"/>
+                                <rect key="frame" x="157" y="248" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add file"/>
                                 <connections>
@@ -250,6 +268,7 @@
                     <connections>
                         <outlet property="imageView" destination="OfZ-JG-bu4" id="rlr-sK-tij"/>
                         <outlet property="tableView" destination="C7S-tz-onH" id="G78-N1-1xZ"/>
+                        <outlet property="txtTitle" destination="m0W-qJ-LIO" id="93G-cy-ilk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfV-0w-LtF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

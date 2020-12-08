@@ -11,6 +11,7 @@ class ListAlbumViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var txtTitle: UITextField!
     
     var fichiers: [Fichier]!
     var callback : (() -> Void)?
@@ -36,6 +37,14 @@ class ListAlbumViewController: UIViewController {
     }
     
     @IBAction func addClick(_ sender: Any) {
+        if let _text = txtTitle.text, _text.isEmpty {
+            return
+        }
+        
+        let album = Album(title: txtTitle.text!)
+        let fileIds = fichiers.map{ $0.id!}
+        
+        Album().add(album: album, fileIds: fileIds)
     }
     
     @IBAction func addFileClick(_ sender: Any) {
