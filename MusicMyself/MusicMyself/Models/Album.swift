@@ -44,4 +44,26 @@ class Album: NSObject
         
         return result
     }
+    
+    func add(album: Album, fileIds: [Int])  {
+        let sqlAlbum = "insert into Album(ATitle) value(\(album.title!))"
+        
+        let db = BDD.instance.database!
+        do {
+            if db.open() {
+                _ = try db.executeUpdate(sqlAlbum, values: nil)
+                let albumId = db.lastInsertRowId
+                
+                guard albumId != 0 else {
+                    return
+                }
+                for i in fileIds {
+                    try db.executeUpdate("insert into AlbumFichier(AID, FID) values(?,?)", values: [albumId, i])
+                }
+            }
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+    }
 }

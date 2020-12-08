@@ -49,6 +49,13 @@ class ListViewController: UIViewController {
         playView.setCurrentInfo()
     }
     
+    @IBAction func addClick(_ sender: Any) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "ListAlbumViewController") {
+            let tmp = controller as! ListAlbumViewController
+            self.navigationController?.pushViewController(tmp, animated: true)
+        }
+    }
+    
     override func remoteControlReceived(with event: UIEvent?) {
         if event!.type == UIEvent.EventType.remoteControl{
             switch event!.subtype{

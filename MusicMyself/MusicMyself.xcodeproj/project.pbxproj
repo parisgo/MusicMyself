@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		44127DB82579639300E75A8D /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44127DB72579639300E75A8D /* DirectoryMonitor.swift */; };
+		441EA066257FFEE000F8DF6A /* ListAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA065257FFEE000F8DF6A /* ListAlbumViewController.swift */; };
+		441EA06B2580013C00F8DF6A /* ListAlbumSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */; };
+		441EA0722580077500F8DF6A /* ListAlbumSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA0702580077500F8DF6A /* ListAlbumSelectTableViewCell.swift */; };
+		441EA0732580077500F8DF6A /* ListAlbumSelectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441EA0712580077500F8DF6A /* ListAlbumSelectTableViewCell.xib */; };
+		441EA07C2580195500F8DF6A /* ListAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA07A2580195500F8DF6A /* ListAlbumTableViewCell.swift */; };
+		441EA07D2580195500F8DF6A /* ListAlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441EA07B2580195500F8DF6A /* ListAlbumTableViewCell.xib */; };
 		443ECF3C25792AB50009A3A2 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */; };
 		445240752578124800DD5E60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240742578124800DD5E60 /* AppDelegate.swift */; };
 		445240772578124800DD5E60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240762578124800DD5E60 /* SceneDelegate.swift */; };
@@ -86,6 +92,12 @@
 
 /* Begin PBXFileReference section */
 		44127DB72579639300E75A8D /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
+		441EA065257FFEE000F8DF6A /* ListAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumViewController.swift; sourceTree = "<group>"; };
+		441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumSelectViewController.swift; sourceTree = "<group>"; };
+		441EA0702580077500F8DF6A /* ListAlbumSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumSelectTableViewCell.swift; sourceTree = "<group>"; };
+		441EA0712580077500F8DF6A /* ListAlbumSelectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAlbumSelectTableViewCell.xib; sourceTree = "<group>"; };
+		441EA07A2580195500F8DF6A /* ListAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumTableViewCell.swift; sourceTree = "<group>"; };
+		441EA07B2580195500F8DF6A /* ListAlbumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAlbumTableViewCell.xib; sourceTree = "<group>"; };
 		443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		445240712578124800DD5E60 /* MusicMyself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMyself.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		445240742578124800DD5E60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +300,8 @@
 				44C40579257B8CD90010581E /* FichierDetailViewController.swift */,
 				445F92DE257BCD68009AF09A /* ListViewController.swift */,
 				445F92FA257C1AA8009AF09A /* ListDetailViewController.swift */,
+				441EA065257FFEE000F8DF6A /* ListAlbumViewController.swift */,
+				441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -449,6 +463,10 @@
 				445F92E4257BD1F0009AF09A /* ListCollectionViewCell.xib */,
 				445F92FF257C242C009AF09A /* ListEveryFileTableViewCell.swift */,
 				445F9300257C242C009AF09A /* ListEveryFileTableViewCell.xib */,
+				441EA07A2580195500F8DF6A /* ListAlbumTableViewCell.swift */,
+				441EA07B2580195500F8DF6A /* ListAlbumTableViewCell.xib */,
+				441EA0702580077500F8DF6A /* ListAlbumSelectTableViewCell.swift */,
+				441EA0712580077500F8DF6A /* ListAlbumSelectTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -593,11 +611,13 @@
 				44C40584257B90F70010581E /* tab_video@2x.png in Resources */,
 				4452407C2578124800DD5E60 /* Main.storyboard in Resources */,
 				44D971D4257CD04E00D45F81 /* player_start.png in Resources */,
+				441EA07D2580195500F8DF6A /* ListAlbumTableViewCell.xib in Resources */,
 				44C40575257B861C0010581E /* FichierTableViewCell.xib in Resources */,
 				4467DFA7257AD054001F4146 /* musicMyselfDB.sqlite in Resources */,
 				44ECF331257E33F8003D7919 /* player_more.png in Resources */,
 				445F9302257C242C009AF09A /* ListEveryFileTableViewCell.xib in Resources */,
 				44C14CF2257936190029879F /* GCDWebUploader.bundle in Resources */,
+				441EA0732580077500F8DF6A /* ListAlbumSelectTableViewCell.xib in Resources */,
 				445240C1257826BC00DD5E60 /* bg_heart.png in Resources */,
 				44D2DAE2257D3649006FA187 /* PlayerView.xib in Resources */,
 			);
@@ -644,10 +664,14 @@
 				4467DF90257ACA64001F4146 /* FMDatabaseAdditions.m in Sources */,
 				445240772578124800DD5E60 /* SceneDelegate.swift in Sources */,
 				445F92EB257BD406009AF09A /* ViewExtension.swift in Sources */,
+				441EA066257FFEE000F8DF6A /* ListAlbumViewController.swift in Sources */,
+				441EA0722580077500F8DF6A /* ListAlbumSelectTableViewCell.swift in Sources */,
 				4467DF92257ACA64001F4146 /* FMDatabasePool.m in Sources */,
 				44C14CDA257934840029879F /* GCDWebServer.m in Sources */,
 				44C14CDD257934840029879F /* GCDWebServerFileResponse.m in Sources */,
+				441EA06B2580013C00F8DF6A /* ListAlbumSelectViewController.swift in Sources */,
 				445F9301257C242C009AF09A /* ListEveryFileTableViewCell.swift in Sources */,
+				441EA07C2580195500F8DF6A /* ListAlbumTableViewCell.swift in Sources */,
 				44C14CE1257934840029879F /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				4467DF91257ACA64001F4146 /* FMDatabase.m in Sources */,
 				4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */,

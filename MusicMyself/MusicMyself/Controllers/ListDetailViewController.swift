@@ -41,7 +41,7 @@ class ListDetailViewController: UIViewController {
     {
         if let tmp = album {
             listTitle.text = tmp.title
-            fichiers = Fichier().getListByAlbum(aId: tmp.id);
+            fichiers = Fichier().getListByAlbum(aId: tmp.id)
             
             guard fichiers != nil && fichiers.count > 0 else {
                 return
