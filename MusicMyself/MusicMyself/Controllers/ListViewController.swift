@@ -75,8 +75,6 @@ extension ListViewController : UICollectionViewDelegate {
 
 extension ListViewController: AVAudioPlayerDelegate{
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
-        func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
-            playView.playerDidFinish()
-        }
+        playView.playerDidFinish()
     }
 }
