@@ -23,6 +23,11 @@ class Fichier: NSObject
         self.name = name
     }
     
+    override func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? Fichier else { return false }
+        return self.id == other.id
+    }
+    
     func getList() -> [Fichier]! {
         let sql = "select * from Fichier"
         

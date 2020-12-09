@@ -193,9 +193,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="ABf-3a-3RT">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="minus" catalog="system" id="Mee-Dk-k9c">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="command" catalog="system" id="Mee-Dk-k9c">
                             <connections>
-                                <action selector="deleteClick:" destination="7fd-yQ-hqh" id="Kq3-6g-jfI"/>
+                                <action selector="moreClick:" destination="7fd-yQ-hqh" id="LMU-rW-0yA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -493,6 +493,7 @@
     <resources>
         <image name="arr_back.png" width="22" height="22"/>
         <image name="books.vertical" catalog="system" width="128" height="103"/>
+        <image name="command" catalog="system" width="128" height="115"/>
         <image name="link" catalog="system" width="128" height="122"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>

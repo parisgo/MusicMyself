@@ -67,7 +67,69 @@ class ListDetailViewController: UIViewController {
         }        
     }
 
-    @IBAction func deleteClick(_ sender: Any) {
+    @IBAction func moreClick(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "Action", message: "You want", preferredStyle: .actionSheet)
+        
+        let actAdd = UIAlertAction(title: "Add file", style: .default) { (action) in
+            self.addFile()
+        }
+        
+        let actDeleteAlbum = UIAlertAction(title: "Delete album", style: .default) { (action) in
+            self.deleteAlbum()
+        }
+        
+        let actClose = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        }
+        
+        actionSheet.addAction(actAdd)
+        actionSheet.addAction(actDeleteAlbum)
+        actionSheet.addAction(actClose)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        if event!.type == UIEvent.EventType.remoteControl{
+            switch event!.subtype{
+            case UIEventSubtype.remoteControlPlay:
+                playerView.startOrStop()
+            case UIEventSubtype.remoteControlPause:
+                playerView.startOrStop()
+            case UIEventSubtype.remoteControlNextTrack:
+                playerView.next()
+            case UIEventSubtype.remoteControlPreviousTrack:
+                playerView.previous()
+            default:
+                print("remoteControlReceived")
+            }
+        }
+    }
+    
+    func addFile() {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "ListAlbumSelectViewController") {
+            let tmp = controller as! ListAlbumSelectViewController
+            tmp.callback = {
+                guard tmp.fichierSelect.count > 0 else {
+                    return
+                }
+                
+                var arrayNew:[Int] = []
+                for newItem in tmp.fichierSelect {
+                    if !self.fichiers.contains(newItem) {
+                        self.fichiers.append(newItem)
+                        arrayNew.append(newItem.id)
+                    }
+                }
+                
+                self.tableView.reloadData()
+                Album().add(album: self.album, fileIds: arrayNew)
+            }
+            
+            present(tmp, animated: true, completion: nil)
+        }
+    }
+    
+    func deleteAlbum() {
         guard album.id != 1 else {
             return
         }
@@ -86,23 +148,6 @@ class ListDetailViewController: UIViewController {
         }))
 
         present(refreshAlert, animated: true, completion: nil)
-    }
-    
-    override func remoteControlReceived(with event: UIEvent?) {
-        if event!.type == UIEvent.EventType.remoteControl{
-            switch event!.subtype{
-            case UIEventSubtype.remoteControlPlay:
-                playerView.startOrStop()
-            case UIEventSubtype.remoteControlPause:
-                playerView.startOrStop()
-            case UIEventSubtype.remoteControlNextTrack:
-                playerView.next()
-            case UIEventSubtype.remoteControlPreviousTrack:
-                playerView.previous()
-            default:
-                print("remoteControlReceived")
-            }
-        }
     }
 }
 

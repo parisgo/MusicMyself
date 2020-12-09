@@ -13,7 +13,7 @@ class ListAlbumViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var txtTitle: UITextField!
     
-    var fichiers: [Fichier]!
+    var fichiers: [Fichier] = []
     var callback : (() -> Void)?
     
     override func viewDidLoad() {
@@ -27,13 +27,29 @@ class ListAlbumViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "cell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.imageView.image = UIImage(named: "bg_heart.png")
+    }
+    
     override func viewDidDisappear(_ animated : Bool) {
-        super.viewDidDisappear(animated)
+        super.viewDidDisappear(animated)       
+        
         callback?()
     }
     
     @IBAction func addClick(_ sender: Any) {
         if let _text = txtTitle.text, _text.isEmpty {
+            return
+        }
+        
+        if Album().isExist(title: txtTitle.text!.trim()) {
+            let alert = UIAlertController(title: "Add playlist", message: "Playlist exist", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { action in })
+            alert.addAction(ok)
+            DispatchQueue.main.async(execute: {self.present(alert, animated: true)})
+            
             return
         }
         

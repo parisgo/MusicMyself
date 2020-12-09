@@ -33,7 +33,6 @@ class Helper: NSObject {
     }
     
     class func getFichierPath() -> String! {
-        let fileManager = FileManager.default
         let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let filePath = "\(rootPath)/Files/"
         

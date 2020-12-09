@@ -56,8 +56,14 @@ class Album: NSObject
         let db = BDD.instance.database!
         do {
             if db.open() {
-                _ = try db.executeUpdate(sqlAlbum, values: [album.title!])
-                let albumId = db.lastInsertRowId
+                var albumId = 0
+                if let aId = album.id {
+                    albumId = aId
+                }
+                else {
+                    _ = try db.executeUpdate(sqlAlbum, values: [album.title!])
+                    albumId = Int(db.lastInsertRowId)
+                }
                 
                 guard albumId != 0 else {
                     return
@@ -104,5 +110,26 @@ class Album: NSObject
         catch{
             print(error.localizedDescription)
         }
+    }
+    
+    func isExist(title: String) -> Bool {
+        var ret = false;
+        let sql = "select * from Album where ATitle = (?)"
+        
+        let db = BDD.instance.database!
+        do {
+            if db.open() {
+                let results = try db.executeQuery(sql, values: [title])
+                if results.next() {
+                    ret = true
+                }
+                db.close()
+            }
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+        
+        return ret
     }
 }
