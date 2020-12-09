@@ -26,8 +26,9 @@ class ListDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         
-        let nib = UINib(nibName:"ListEveryFileTableViewCell", bundle: nil)
+        let nib = UINib(nibName:"FichierTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
         
         //LockScreen Media control registre
@@ -74,7 +75,7 @@ class ListDetailViewController: UIViewController {
             self.addFile()
         }
         
-        let actDeleteAlbum = UIAlertAction(title: "Delete album", style: .default) { (action) in
+        let actDeleteAlbum = UIAlertAction(title: "Delete playlist", style: .default) { (action) in
             self.deleteAlbum()
         }
         
@@ -134,7 +135,7 @@ class ListDetailViewController: UIViewController {
             return
         }
         
-        let refreshAlert = UIAlertController(title: "Confirmation", message: "List will be delete", preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete this playlist", preferredStyle: UIAlertController.Style.alert)
 
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             Album().delete(id: self.album.id)
@@ -157,14 +158,21 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListEveryFileTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
         cell?.fichier = fichiers[indexPath.row]
+        
+        if(indexPath.row % 2 == 0) {
+            cell?.backgroundColor = .systemGray6
+        }
+        else {
+            cell?.backgroundColor = .none
+        }
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

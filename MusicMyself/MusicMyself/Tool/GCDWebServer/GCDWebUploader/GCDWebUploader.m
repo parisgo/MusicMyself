@@ -299,13 +299,21 @@ NS_ASSUME_NONNULL_END
   if ((!_allowHiddenItems && [file.fileName hasPrefix:@"."]) || ![self _checkFileExtension:file.fileName]) {
     return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_Forbidden message:@"Uploaded file name \"%@\" is not allowed", file.fileName];
   }
+    
+  //XYU: don't upload file exist
+  NSString* uploadNewPath = [_uploadDirectory stringByAppendingPathComponent:file.fileName];
+  BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:uploadNewPath];
+  if (fileExists) {
+      return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_Forbidden message:@"File \"%@\" exist", file.fileName];
+  }
+    
   NSString* relativePath = [[request firstArgumentForControlName:@"path"] string];
   NSString* absolutePath = [self _uniquePathForPath:[[_uploadDirectory stringByAppendingPathComponent:GCDWebServerNormalizePath(relativePath)] stringByAppendingPathComponent:file.fileName]];
-
+    
   if (![self shouldUploadFileAtPath:absolutePath withTemporaryFile:file.temporaryPath]) {
     return [GCDWebServerErrorResponse responseWithClientError:kGCDWebServerHTTPStatusCode_Forbidden message:@"Uploading file \"%@\" to \"%@\" is not permitted", file.fileName, relativePath];
   }
-
+    
   NSError* error = nil;
   if (![[NSFileManager defaultManager] moveItemAtPath:file.temporaryPath toPath:absolutePath error:&error]) {
     return [GCDWebServerErrorResponse responseWithServerError:kGCDWebServerHTTPStatusCode_InternalServerError underlyingError:error message:@"Failed moving uploaded file to \"%@\"", relativePath];

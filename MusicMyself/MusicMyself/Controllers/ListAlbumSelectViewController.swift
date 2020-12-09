@@ -23,6 +23,7 @@ class ListAlbumSelectViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
     
         let nib = UINib(nibName:"ListAlbumSelectTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
@@ -59,6 +60,13 @@ extension ListAlbumSelectViewController: UITableViewDelegate, UITableViewDataSou
         
         if let swithChange = cell?.contentView.viewWithTag(2) as? UISwitch {
             swithChange.addTarget(self, action: #selector(switchFile(_ :)), for: .touchUpInside)
+        }
+        
+        if(indexPath.row % 2 == 0) {
+            cell?.backgroundColor = .none
+        }
+        else {
+            cell?.backgroundColor = .systemGray6
         }
         
         return cell!

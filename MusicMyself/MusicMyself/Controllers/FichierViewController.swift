@@ -21,12 +21,10 @@ class FichierViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsSelection = true
-        tableView.allowsSelectionDuringEditing = true
+        tableView.separatorStyle = .none
         
         let nib = UINib(nibName:"FichierTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +57,13 @@ extension FichierViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
         cell?.fichier = fichiers[indexPath.row]
+        
+        if(indexPath.row % 2 == 0) {
+            cell?.backgroundColor = .none
+        }
+        else {
+            cell?.backgroundColor = .systemGray6
+        }
         
         return cell!
     }

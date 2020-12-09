@@ -20,6 +20,8 @@ class ListCollectionViewCell: UICollectionViewCell {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
+        
         self.listTitle.text = album?.title
         
         /*

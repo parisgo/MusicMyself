@@ -19,6 +19,7 @@ class ListAlbumSelectTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         self.labTitle.text = fichier?.title
         
         self.imgView.contentMode = UIView.ContentMode.scaleAspectFit

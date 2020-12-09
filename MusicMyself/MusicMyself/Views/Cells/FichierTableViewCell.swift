@@ -20,6 +20,8 @@ class FichierTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
+        
         self.title.text = fichier?.title
         
         self.fichierImage.contentMode = UIView.ContentMode.scaleAspectFit

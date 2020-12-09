@@ -22,8 +22,9 @@ class ListAlbumViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
     
-        let nib = UINib(nibName:"ListAlbumTableViewCell", bundle: nil)
+        let nib = UINib(nibName:"FichierTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
     }
     
@@ -81,22 +82,43 @@ class ListAlbumViewController: UIViewController {
 
 extension ListAlbumViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (fichiers != nil) ? fichiers.count : 0
+        return fichiers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListAlbumTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
         cell?.fichier = fichiers[indexPath.row]
         
-        if let delButton = cell?.contentView.viewWithTag(2) as? UIButton {
-            delButton.addTarget(self, action: #selector(deleteFileClick(_ :)), for: .touchUpInside)
+//        if let delButton = cell?.contentView.viewWithTag(2) as? UIButton {
+//            delButton.addTarget(self, action: #selector(deleteFileClick(_ :)), for: .touchUpInside)
+//        }
+        
+        if(indexPath.row % 2 == 0) {
+            cell?.backgroundColor = .systemGray6            
+        }
+        else {
+            cell?.backgroundColor = .none
         }
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            self.fichiers.remove(at: indexPath.row)
+            self.tableView.reloadData()
+            
+            completionHandler(true)
+        }
+        
+        let swipeActionConfig = UISwipeActionsConfiguration(actions: [delete])
+        swipeActionConfig.performsFirstActionWithFullSwipe = false
+        
+        return swipeActionConfig
     }
     
     @objc func deleteFileClick(_ sender: UIButton) {

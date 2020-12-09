@@ -12,8 +12,6 @@
 		441EA06B2580013C00F8DF6A /* ListAlbumSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */; };
 		441EA0722580077500F8DF6A /* ListAlbumSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA0702580077500F8DF6A /* ListAlbumSelectTableViewCell.swift */; };
 		441EA0732580077500F8DF6A /* ListAlbumSelectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441EA0712580077500F8DF6A /* ListAlbumSelectTableViewCell.xib */; };
-		441EA07C2580195500F8DF6A /* ListAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA07A2580195500F8DF6A /* ListAlbumTableViewCell.swift */; };
-		441EA07D2580195500F8DF6A /* ListAlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441EA07B2580195500F8DF6A /* ListAlbumTableViewCell.xib */; };
 		443423AA25814C7D00672DFF /* Extensionx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443423A925814C7D00672DFF /* Extensionx.swift */; };
 		443ECF3C25792AB50009A3A2 /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */; };
 		445240752578124800DD5E60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240742578124800DD5E60 /* AppDelegate.swift */; };
@@ -31,8 +29,6 @@
 		445F92EB257BD406009AF09A /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92EA257BD406009AF09A /* ViewExtension.swift */; };
 		445F92F3257BD9E5009AF09A /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92F2257BD9E5009AF09A /* Album.swift */; };
 		445F92FB257C1AA8009AF09A /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92FA257C1AA8009AF09A /* ListDetailViewController.swift */; };
-		445F9301257C242C009AF09A /* ListEveryFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92FF257C242C009AF09A /* ListEveryFileTableViewCell.swift */; };
-		445F9302257C242C009AF09A /* ListEveryFileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 445F9300257C242C009AF09A /* ListEveryFileTableViewCell.xib */; };
 		4467DF8E257ACA64001F4146 /* BDD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467DF82257ACA64001F4146 /* BDD.swift */; };
 		4467DF8F257ACA64001F4146 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4467DF83257ACA64001F4146 /* FMDatabaseQueue.m */; };
 		4467DF90257ACA64001F4146 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4467DF86257ACA64001F4146 /* FMDatabaseAdditions.m */; };
@@ -97,8 +93,6 @@
 		441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumSelectViewController.swift; sourceTree = "<group>"; };
 		441EA0702580077500F8DF6A /* ListAlbumSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumSelectTableViewCell.swift; sourceTree = "<group>"; };
 		441EA0712580077500F8DF6A /* ListAlbumSelectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAlbumSelectTableViewCell.xib; sourceTree = "<group>"; };
-		441EA07A2580195500F8DF6A /* ListAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumTableViewCell.swift; sourceTree = "<group>"; };
-		441EA07B2580195500F8DF6A /* ListAlbumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAlbumTableViewCell.xib; sourceTree = "<group>"; };
 		443423A925814C7D00672DFF /* Extensionx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensionx.swift; sourceTree = "<group>"; };
 		443ECF3B25792AB50009A3A2 /* HTTPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		445240712578124800DD5E60 /* MusicMyself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicMyself.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +116,6 @@
 		445F92EA257BD406009AF09A /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		445F92F2257BD9E5009AF09A /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		445F92FA257C1AA8009AF09A /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
-		445F92FF257C242C009AF09A /* ListEveryFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEveryFileTableViewCell.swift; sourceTree = "<group>"; };
-		445F9300257C242C009AF09A /* ListEveryFileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListEveryFileTableViewCell.xib; sourceTree = "<group>"; };
 		4467DF81257ACA64001F4146 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		4467DF82257ACA64001F4146 /* BDD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BDD.swift; sourceTree = "<group>"; };
 		4467DF83257ACA64001F4146 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
@@ -464,10 +456,6 @@
 				44C40573257B861C0010581E /* FichierTableViewCell.xib */,
 				445F92E3257BD1F0009AF09A /* ListCollectionViewCell.swift */,
 				445F92E4257BD1F0009AF09A /* ListCollectionViewCell.xib */,
-				445F92FF257C242C009AF09A /* ListEveryFileTableViewCell.swift */,
-				445F9300257C242C009AF09A /* ListEveryFileTableViewCell.xib */,
-				441EA07A2580195500F8DF6A /* ListAlbumTableViewCell.swift */,
-				441EA07B2580195500F8DF6A /* ListAlbumTableViewCell.xib */,
 				441EA0702580077500F8DF6A /* ListAlbumSelectTableViewCell.swift */,
 				441EA0712580077500F8DF6A /* ListAlbumSelectTableViewCell.xib */,
 			);
@@ -614,11 +602,9 @@
 				44C40584257B90F70010581E /* tab_video@2x.png in Resources */,
 				4452407C2578124800DD5E60 /* Main.storyboard in Resources */,
 				44D971D4257CD04E00D45F81 /* player_start.png in Resources */,
-				441EA07D2580195500F8DF6A /* ListAlbumTableViewCell.xib in Resources */,
 				44C40575257B861C0010581E /* FichierTableViewCell.xib in Resources */,
 				4467DFA7257AD054001F4146 /* musicMyselfDB.sqlite in Resources */,
 				44ECF331257E33F8003D7919 /* player_more.png in Resources */,
-				445F9302257C242C009AF09A /* ListEveryFileTableViewCell.xib in Resources */,
 				44C14CF2257936190029879F /* GCDWebUploader.bundle in Resources */,
 				441EA0732580077500F8DF6A /* ListAlbumSelectTableViewCell.xib in Resources */,
 				445240C1257826BC00DD5E60 /* bg_heart.png in Resources */,
@@ -674,8 +660,6 @@
 				44C14CDA257934840029879F /* GCDWebServer.m in Sources */,
 				44C14CDD257934840029879F /* GCDWebServerFileResponse.m in Sources */,
 				441EA06B2580013C00F8DF6A /* ListAlbumSelectViewController.swift in Sources */,
-				445F9301257C242C009AF09A /* ListEveryFileTableViewCell.swift in Sources */,
-				441EA07C2580195500F8DF6A /* ListAlbumTableViewCell.swift in Sources */,
 				44C14CE1257934840029879F /* GCDWebServerMultiPartFormRequest.m in Sources */,
 				4467DF91257ACA64001F4146 /* FMDatabase.m in Sources */,
 				4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */,
