@@ -83,6 +83,22 @@ class Album: NSObject
             if db.open() {
                 _ = try db.executeUpdate(sqlDelAlbumFile, values: [id])
                 _ = try db.executeUpdate(sqlDelAlbm, values: [id])
+                db.close()
+            }
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deleteFileFromAlbum(albumId: Int, fileId: Int) {
+        let sql = "delete from AlbumFichier where AID = (?) and FID = (?)"
+        
+        let db = BDD.instance.database!
+        do {
+            if db.open() {
+                _ = try db.executeUpdate(sql, values: [albumId, fileId])
+                db.close()
             }
         }
         catch{

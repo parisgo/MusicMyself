@@ -72,13 +72,21 @@ class ListDetailViewController: UIViewController {
             return
         }
         
-        Album().delete(id: album.id)
-        callback?()
-        
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        let refreshAlert = UIAlertController(title: "Confirmation", message: "List will be delete", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            Album().delete(id: self.album.id)
+            self.callback?()
+            
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        }))
+
+        present(refreshAlert, animated: true, completion: nil)
     }
-    
     
     override func remoteControlReceived(with event: UIEvent?) {
         if event!.type == UIEvent.EventType.remoteControl{
@@ -126,6 +134,25 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
             MyPlayer.instance.audioPlayer.delegate = self
         }
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            if indexPath.row == MyPlayer.instance.currentFileIndex {
+                self.playerView.next()
+            }
+            
+            Album().deleteFileFromAlbum(albumId: self.album.id, fileId: self.fichiers[indexPath.row].id)
+            self.fichiers.remove(at: indexPath.row)
+            tableView.reloadData()
+            
+            completionHandler(true)
+        }
+        
+        let swipeActionConfig = UISwipeActionsConfiguration(actions: [delete])
+        swipeActionConfig.performsFirstActionWithFullSwipe = false
+        
+        return swipeActionConfig
+    }    
 }
 
 extension ListDetailViewController: AVAudioPlayerDelegate{

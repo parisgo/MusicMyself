@@ -65,7 +65,7 @@ extension ListAlbumSelectViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 60
     }
     
     @objc func switchFile(_ sender: UISwitch) {
