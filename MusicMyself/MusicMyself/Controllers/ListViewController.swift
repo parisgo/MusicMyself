@@ -52,6 +52,10 @@ class ListViewController: UIViewController {
     @IBAction func addClick(_ sender: Any) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "ListAlbumViewController") {
             let tmp = controller as! ListAlbumViewController
+            tmp.callback = {
+                self.albums = Album().getList()
+                self.collectionView.reloadData()
+            }
             self.navigationController?.pushViewController(tmp, animated: true)
         }
     }

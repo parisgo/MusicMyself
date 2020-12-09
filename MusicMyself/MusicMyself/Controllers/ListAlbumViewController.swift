@@ -32,10 +32,6 @@ class ListAlbumViewController: UIViewController {
         callback?()
     }
     
-    @IBAction func backClick(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func addClick(_ sender: Any) {
         if let _text = txtTitle.text, _text.isEmpty {
             return
@@ -45,6 +41,10 @@ class ListAlbumViewController: UIViewController {
         let fileIds = fichiers.map{ $0.id!}
         
         Album().add(album: album, fileIds: fileIds)
+        
+        callback?()
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addFileClick(_ sender: Any) {

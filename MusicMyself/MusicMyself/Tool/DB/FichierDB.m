@@ -27,7 +27,7 @@ FMDatabase *db;
     if([db open]) {
         [db executeUpdate:@"insert into Fichier(FName, FTitle) values(?, ?)",name, nameNoExt];
         
-        NSInteger idNew = [self getId: name];
+        NSInteger idNew = [db lastInsertRowId];
         if(idNew != 0) {
             [db executeUpdate:@"insert into AlbumFichier(AID, FID) values(1, ?)", [NSNumber numberWithInt:idNew]];
         }

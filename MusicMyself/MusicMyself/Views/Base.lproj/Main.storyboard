@@ -32,7 +32,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Kj-6R-hsM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2672.8000000000002" y="311.69415292353824"/>
+            <point key="canvasLocation" x="2425" y="316"/>
         </scene>
         <!--Fichier Detail View Controller-->
         <scene sceneID="kyB-oN-Aw9">
@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHc-Oj-hPp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3456.8000000000002" y="316.19190404797604"/>
+            <point key="canvasLocation" x="3134" y="312"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="Kj9-qM-tVm">
@@ -143,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgP-F8-htB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2672.8000000000002" y="-397.15142428785612"/>
+            <point key="canvasLocation" x="2426" y="-398"/>
         </scene>
         <!--List Detail View Controller-->
         <scene sceneID="HLe-ar-mBd">
@@ -174,6 +174,7 @@
                                                 <action selector="btnBack:" destination="7fd-yQ-hqh" id="P2D-JQ-tie"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="minus" catalog="system" id="RSg-Bs-aQm"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -191,7 +192,13 @@
                         <viewLayoutGuide key="safeArea" id="2lu-2A-eEY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ABf-3a-3RT"/>
+                    <navigationItem key="navigationItem" id="ABf-3a-3RT">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="minus" catalog="system" id="Mee-Dk-k9c">
+                            <connections>
+                                <action selector="deleteClick:" destination="7fd-yQ-hqh" id="Kq3-6g-jfI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="listImage" destination="Wqw-KQ-meS" id="ove-yW-M9a"/>
@@ -202,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tW9-Qg-W1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3456.8000000000002" y="-398.05097451274366"/>
+            <point key="canvasLocation" x="3850" y="-398"/>
         </scene>
         <!--List Album View Controller-->
         <scene sceneID="8kA-mM-QLi">
@@ -239,14 +246,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-XE-762">
-                                <rect key="frame" x="321" y="208" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ok"/>
-                                <connections>
-                                    <action selector="addClick:" destination="GmW-ft-BVT" eventType="touchUpInside" id="3BG-bZ-sbr"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m0W-qJ-LIO">
                                 <rect key="frame" x="59" y="206" width="249" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -265,6 +264,13 @@
                         <viewLayoutGuide key="safeArea" id="Yni-rW-Ff0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6l2-Jd-uRr">
+                        <barButtonItem key="rightBarButtonItem" title="Ok" id="H2R-9o-1EU">
+                            <connections>
+                                <action selector="addClick:" destination="GmW-ft-BVT" id="4TH-8t-m1m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="OfZ-JG-bu4" id="rlr-sK-tij"/>
                         <outlet property="tableView" destination="C7S-tz-onH" id="G78-N1-1xZ"/>
@@ -273,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfV-0w-LtF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4136.8000000000002" y="-397.15142428785612"/>
+            <point key="canvasLocation" x="5223" y="-397"/>
         </scene>
         <!--List Album Select View Controller-->
         <scene sceneID="xl0-L2-Kvz">
@@ -317,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iek-Gm-4x3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4840.8000000000002" y="-397.15142428785612"/>
+            <point key="canvasLocation" x="5926" y="-398"/>
         </scene>
         <!--Wifi View Controller-->
         <scene sceneID="npt-2N-MOm">
@@ -368,7 +374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odc-O7-ggO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2672.8000000000002" y="997.15142428785612"/>
+            <point key="canvasLocation" x="2425" y="997"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZqP-ae-fRX">
@@ -447,11 +453,48 @@
             </objects>
             <point key="canvasLocation" x="1733.5999999999999" y="997.15142428785612"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xSg-3a-uIN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BBs-yi-b0L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sVN-aY-YVX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7fd-yQ-hqh" kind="relationship" relationship="rootViewController" id="YDE-tE-wCy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pss-iR-4zp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3134" y="-398"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0px-4H-RCG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rTq-xx-1MB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ef7-BR-6jE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GmW-ft-BVT" kind="relationship" relationship="rootViewController" id="Ui6-iw-fqs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bPz-9J-swW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4558" y="-397"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arr_back.png" width="22" height="22"/>
         <image name="books.vertical" catalog="system" width="128" height="103"/>
         <image name="link" catalog="system" width="128" height="122"/>
+        <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="restart" catalog="system" width="120" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>

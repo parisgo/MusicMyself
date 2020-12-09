@@ -18,6 +18,7 @@ class ListDetailViewController: UIViewController {
     
     var album: Album!
     var fichiers: [Fichier]!
+    var callback : (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,9 +67,18 @@ class ListDetailViewController: UIViewController {
         }        
     }
 
-    @IBAction func btnBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func deleteClick(_ sender: Any) {
+        guard album.id != 1 else {
+            return
+        }
+        
+        Album().delete(id: album.id)
+        callback?()
+        
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
+    
     
     override func remoteControlReceived(with event: UIEvent?) {
         if event!.type == UIEvent.EventType.remoteControl{
