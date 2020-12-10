@@ -17,6 +17,9 @@ class FichierTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        fichierImage.layer.cornerRadius = 6
+        fichierImage.layer.masksToBounds = true
     }
     
     override func layoutSubviews() {

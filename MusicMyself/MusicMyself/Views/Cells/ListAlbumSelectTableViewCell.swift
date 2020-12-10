@@ -16,6 +16,9 @@ class ListAlbumSelectTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        imgView.layer.cornerRadius = 6
+        imgView.layer.masksToBounds = true
     }
     
     override func layoutSubviews() {

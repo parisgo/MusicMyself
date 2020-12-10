@@ -184,7 +184,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uL-OC-eyw" customClass="PlayerView" customModule="MusicMyself" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="568" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>

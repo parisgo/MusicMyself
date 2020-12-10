@@ -43,6 +43,10 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
     func initView() {
         guard let view = loadViewFromNib() else { return }
         view.frame = bounds
+        
+        imgFile.layer.cornerRadius = 6
+        imgFile.layer.masksToBounds = true
+        
         addSubview(view)
     }
     

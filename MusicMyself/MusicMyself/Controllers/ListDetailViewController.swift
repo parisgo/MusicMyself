@@ -17,7 +17,6 @@ class ListDetailViewController: UIViewController {
     @IBOutlet weak var playerView: PlayerView!
     
     var album: Album!
-    var fichiers: [Fichier]!
     var callback : (() -> Void)?
     
     override func viewDidLoad() {
@@ -43,15 +42,15 @@ class ListDetailViewController: UIViewController {
     {
         if let tmp = album {
             listTitle.text = tmp.title
-            fichiers = Fichier().getListByAlbum(aId: tmp.id)
+            MyPlayer.instance.fichiers = Fichier().getListByAlbum(aId: tmp.id)
             
-            guard fichiers != nil && fichiers.count > 0 else {
+            guard MyPlayer.instance.fichiers != nil && MyPlayer.instance.fichiers.count > 0 else {
                 return
             }
             
             tableView.reloadData()
             
-            let firstFile = fichiers[0]
+            let firstFile = MyPlayer.instance.fichiers[0]
             let imagePath = Helper.checkImage(id: firstFile.id)
             if(imagePath == nil) {
                 self.listImage.image = UIImage(named: "bg_heart.png")
@@ -116,8 +115,8 @@ class ListDetailViewController: UIViewController {
                 
                 var arrayNew:[Int] = []
                 for newItem in tmp.fichierSelect {
-                    if !self.fichiers.contains(newItem) {
-                        self.fichiers.append(newItem)
+                    if !MyPlayer.instance.fichiers.contains(newItem) {
+                        MyPlayer.instance.fichiers.append(newItem)
                         arrayNew.append(newItem.id)
                     }
                 }
@@ -154,12 +153,12 @@ class ListDetailViewController: UIViewController {
 
 extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (fichiers != nil) ? fichiers.count : 0
+        return (MyPlayer.instance.fichiers != nil) ? MyPlayer.instance.fichiers.count : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
-        cell?.fichier = fichiers[indexPath.row]
+        cell?.fichier = MyPlayer.instance.fichiers[indexPath.row]
         
         if(indexPath.row % 2 == 0) {
             cell?.backgroundColor = .systemGray6
@@ -172,12 +171,10 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 55
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MyPlayer.instance.fichiers = fichiers
-        
         MyPlayer.instance.currentFileIndex = indexPath.row;
         
         playerView.setCurrentInfo()
@@ -194,8 +191,8 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 self.playerView.next()
             }
             
-            Album().deleteFileFromAlbum(albumId: self.album.id, fileId: self.fichiers[indexPath.row].id)
-            self.fichiers.remove(at: indexPath.row)
+            Album().deleteFileFromAlbum(albumId: self.album.id, fileId: MyPlayer.instance.fichiers[indexPath.row].id)
+            MyPlayer.instance.fichiers.remove(at: indexPath.row)
             tableView.reloadData()
             
             completionHandler(true)
