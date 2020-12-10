@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Helper: NSObject {
     class func checkImage(id: Int) -> String! {
@@ -18,6 +19,17 @@ class Helper: NSObject {
         }
         
         return nil;
+    }
+    
+    class func getImage(id: Int) -> UIImage {
+        let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let filePath = "\(rootPath)/Images/\(id).jpg"
+        
+        if (FileManager.default.fileExists(atPath: filePath)){
+            return UIImage.init(contentsOfFile: filePath)!
+        }
+        
+        return UIImage(named: "bg_heart.png")!
     }
     
     class func checkFile(name: String) -> String! {

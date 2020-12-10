@@ -9,23 +9,30 @@ import UIKit
 import AVFoundation
 
 class ListDetailViewController: UIViewController {
-
-    @IBOutlet weak var listImage: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var listTitle: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var playerView: PlayerView!
     
     var album: Album!
+    var fichiers: [Fichier] = []
     var callback : (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        collectionView.delegate = self
+        collectionView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical //.horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        collectionView.setCollectionViewLayout(layout, animated: true)
         
         let nib = UINib(nibName:"FichierTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
@@ -41,25 +48,14 @@ class ListDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool)
     {
         if let tmp = album {
-            listTitle.text = tmp.title
-            MyPlayer.instance.fichiers = Fichier().getListByAlbum(aId: tmp.id)
+            fichiers = Fichier().getListByAlbum(aId: tmp.id)
             
-            guard MyPlayer.instance.fichiers != nil && MyPlayer.instance.fichiers.count > 0 else {
+            guard fichiers.count > 0 else {
                 return
             }
             
+            collectionView.reloadData()
             tableView.reloadData()
-            
-            let firstFile = MyPlayer.instance.fichiers[0]
-            let imagePath = Helper.checkImage(id: firstFile.id)
-            if(imagePath == nil) {
-                self.listImage.image = UIImage(named: "bg_heart.png")
-            }
-            else {
-                self.listImage.image = UIImage.init(contentsOfFile: imagePath!)
-            }
-            
-            playerView.setCurrentInfo()
         }
         
         if MyPlayer.instance.audioPlayer != nil {
@@ -115,8 +111,8 @@ class ListDetailViewController: UIViewController {
                 
                 var arrayNew:[Int] = []
                 for newItem in tmp.fichierSelect {
-                    if !MyPlayer.instance.fichiers.contains(newItem) {
-                        MyPlayer.instance.fichiers.append(newItem)
+                    if !self.fichiers.contains(newItem) {
+                        self.fichiers.append(newItem)
                         arrayNew.append(newItem.id)
                     }
                 }
@@ -153,12 +149,12 @@ class ListDetailViewController: UIViewController {
 
 extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (MyPlayer.instance.fichiers != nil) ? MyPlayer.instance.fichiers.count : 0
+        return fichiers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
-        cell?.fichier = MyPlayer.instance.fichiers[indexPath.row]
+        cell?.fichier = fichiers[indexPath.row]
         
         if(indexPath.row % 2 == 0) {
             cell?.backgroundColor = .systemGray6
@@ -175,7 +171,8 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MyPlayer.instance.currentFileIndex = indexPath.row;
+        MyPlayer.instance.fichiers = fichiers
+        MyPlayer.instance.currentFileIndex = indexPath.row
         
         playerView.setCurrentInfo()
         playerView.play()
@@ -191,8 +188,9 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 self.playerView.next()
             }
             
-            Album().deleteFileFromAlbum(albumId: self.album.id, fileId: MyPlayer.instance.fichiers[indexPath.row].id)
-            MyPlayer.instance.fichiers.remove(at: indexPath.row)
+            Album().deleteFileFromAlbum(albumId: self.album.id, fileId: self.fichiers[indexPath.row].id)
+            self.fichiers.remove(at: indexPath.row)
+            
             tableView.reloadData()
             
             completionHandler(true)
@@ -210,3 +208,34 @@ extension ListDetailViewController: AVAudioPlayerDelegate{
         playerView.playerDidFinish()
     }
 }
+
+extension ListDetailViewController : UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Album4Cell", for: indexPath) as! Album4CollectionViewCell
+        cell.imgAlbum.image = Helper.getImage(id: fichiers[indexPath.row].id)
+        
+        return cell
+    }
+}
+
+extension ListDetailViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)//here your custom value for spacing
+        }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let lay = collectionViewLayout as! UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+
+        return CGSize(width:widthPerItem, height:165)
+    }
+}
+
