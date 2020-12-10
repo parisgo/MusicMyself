@@ -220,7 +220,13 @@ extension ListDetailViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Album4Cell", for: indexPath) as! Album4CollectionViewCell
-        cell.imgAlbum.image = Helper.getImage(id: fichiers[indexPath.row].id)
+        
+        if indexPath.row < fichiers.count {
+            cell.imgAlbum.image = Helper.getImage(id: fichiers[indexPath.row].id)
+        }
+        else {
+            cell.imgAlbum.image = Helper.getImage(id: 0)
+        }
         
         return cell
     }

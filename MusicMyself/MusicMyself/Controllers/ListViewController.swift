@@ -45,8 +45,6 @@ class ListViewController: UIViewController {
         else {
             MyPlayer.instance.audioPlayer.delegate = self
         }
-        
-        playView.setCurrentInfo()
     }
     
     @IBAction func addClick(_ sender: Any) {

@@ -55,6 +55,22 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    override func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
+
+        if newWindow == nil {
+            print("UIView disappear")
+        } else {
+            print("UIView appear")
+        }
+        
+        setCurrentInfo()
+    }
+    
     @IBAction func btnMore(_ sender: Any) {
         guard MyPlayer.instance.fichiers != nil && MyPlayer.instance.fichiers.count > 0 else {
             return
@@ -115,7 +131,6 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
             return
         }
         
-        print("play index: \(MyPlayer.instance.currentFileIndex)")
         let currentFile = MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex]
         let filePath = Helper.checkFile(name: currentFile.name)
         guard filePath != nil else {
@@ -148,6 +163,7 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         guard MyPlayer.instance.audioPlayer != nil else {
             return
         }
+        
         showButtonImage(isStart: !MyPlayer.instance.audioPlayer.isPlaying)
     }
     
