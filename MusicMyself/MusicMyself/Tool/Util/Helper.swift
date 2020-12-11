@@ -29,7 +29,7 @@ class Helper: NSObject {
             return UIImage.init(contentsOfFile: filePath)!
         }
         
-        return UIImage(named: "bg_heart.png")!
+        return UIImage(named: "playlist.png")!
     }
     
     class func checkFile(name: String) -> String! {

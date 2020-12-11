@@ -23,17 +23,6 @@ class ListCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         self.listTitle.text = album?.title
-        
-        /*
-        self.fichierImage.contentMode = UIView.ContentMode.scaleAspectFit
-        
-        let imagePath = Helper.checkImage(id: fichier.id!)
-        if(imagePath == nil) {
-            self.fichierImage.image = UIImage(named: "bg_heart.png")
-        }
-        else {
-            self.fichierImage.image = UIImage.init(contentsOfFile: imagePath!)
-        }
-        */
+        self.listImage.image = Helper.getImage(id: (album?.fIdFirst)!)
     }
 }

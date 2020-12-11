@@ -11,6 +11,7 @@ class Album: NSObject
 {
     var id: Int!
     var title: String!
+    var fIdFirst: Int!
     
     override init() {
     }
@@ -26,7 +27,12 @@ class Album: NSObject
     
     func getList() -> [Album]! {
         var result = [Album]()
-        let sql = "select * from Album"
+        let sql = """
+            select Album.AID, Album.ATitle, ifnull(FileMin.FId,0) as FIdFirst
+            from Album
+            left join (select AID, min(FID) as FId from AlbumFichier group by AID) As FileMin
+            on Album.AId = FileMin.AID
+        """
         
         let db = BDD.instance.database!
         do {
@@ -37,6 +43,7 @@ class Album: NSObject
                     tmp = Album()
                     tmp.id = Int(results.int(forColumn: "AID"))
                     tmp.title = results.string(forColumn: "ATitle") ?? ""
+                    tmp.fIdFirst = Int(results.int(forColumn: "FIdFirst"))
                     
                     result.append(tmp)
                 }
