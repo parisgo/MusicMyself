@@ -18,8 +18,6 @@ class ListDetailViewController: UIViewController {
     var fichiers: [Fichier] = []
     var callback : (() -> Void)?
     
-    var cell: FichierTableViewCell?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +29,7 @@ class ListDetailViewController: UIViewController {
         tableView.separatorStyle = .none
         
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical //.horizontal
+        layout.scrollDirection = .vertical 
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         collectionView.setCollectionViewLayout(layout, animated: true)
@@ -159,7 +157,7 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
         cell?.fichier = fichiers[indexPath.row]
         
         if(indexPath.row % 2 == 0) {
@@ -174,8 +172,6 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
-        cell = tableView.cellForRow(at: indexPath!) as! FichierTableViewCell
-        cell?.fichier = fichiers[indexPath!.row]
         
         MyPlayer.instance.fichiers = fichiers
         MyPlayer.instance.currentFileIndex = indexPath!.row
@@ -187,11 +183,7 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
             MyPlayer.instance.audioPlayer.delegate = self
         }
         
-        cell?.showAnimation(display: true)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {//
-        cell?.showAnimation(display: false)
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -218,6 +210,8 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
 extension ListDetailViewController: AVAudioPlayerDelegate{
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         playerView.playerDidFinish()
+        
+        tableView.reloadData()
     }
 }
 

@@ -9,11 +9,11 @@ import UIKit
 
 class PlayerAnimationView: UIView {
     var numberOfBars = 4
-    var barWidth = CGFloat(6)
-    var barHeight = CGFloat(30)
+    var barWidth = CGFloat(4)
+    var barHeight = CGFloat(18)
     var barSpace = CGFloat(2)
     var barStopHeight = CGFloat(2)
-    let barColor = UIColor(red: 0.000, green: 0.000, blue: 0.999, alpha: 1.0)
+    let barColor = UIColor.lightText
     let timerSpeed = 0.10
     var timer = Timer()
     var barArray: [AnyObject] = []
@@ -29,7 +29,7 @@ class PlayerAnimationView: UIView {
     }
     
     func initView() {
-        addAnimationEffect(Xcoord: 15, Ycoord: 15)
+        addAnimationEffect(Xcoord: 17, Ycoord: 20)
         
         Timer.scheduledTimer(timeInterval: timerSpeed, target: self, selector: #selector(timerChange), userInfo: nil, repeats: true)
     }

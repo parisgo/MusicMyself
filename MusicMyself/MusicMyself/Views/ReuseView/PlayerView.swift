@@ -61,12 +61,6 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
     
     override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
-
-        if newWindow == nil {
-            print("UIView disappear")
-        } else {
-            print("UIView appear")
-        }
         
         setCurrentInfo()
     }
@@ -143,7 +137,7 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         
         labFileTitle.text = currentFile.title
         labFileAuthor.text = currentFile.author
-        setFileImage(id: currentFile.id)
+        imgFile.image = Helper.getImage(id: currentFile.id)
         
         showButtonImage(isStart: false)
         
@@ -158,23 +152,13 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         let cur = MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex]
         labFileTitle.text = cur.title
         labFileAuthor.text = cur.author
-        setFileImage(id: cur.id)
+        imgFile.image = Helper.getImage(id: cur.id)
         
         guard MyPlayer.instance.audioPlayer != nil else {
             return
         }
         
         showButtonImage(isStart: !MyPlayer.instance.audioPlayer.isPlaying)
-    }
-    
-    func setFileImage(id: Int) {
-        let imagePath = Helper.checkImage(id: id)
-        if(imagePath == nil) {
-            self.imgFile.image = UIImage(named: "bg_heart.png")
-        }
-        else {
-            self.imgFile.image = UIImage.init(contentsOfFile: imagePath!)
-        }
     }
     
     func setPlayDameon() {
@@ -215,6 +199,10 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         else {
             play()
             showButtonImage(isStart: false)
+        }
+        
+        if let detailView = self.parentViewController as? ListDetailViewController {
+            detailView.tableView.reloadData()
         }
     }
     

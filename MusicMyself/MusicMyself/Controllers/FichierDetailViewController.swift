@@ -31,14 +31,6 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
         if let tmp = fichier {
             fichierTitle.text = tmp.title
             fichierAuthor.text = tmp.author
-            
-            let imagePath = Helper.checkImage(id: fichier.id!)
-            if(imagePath == nil) {
-                self.fichierImg.image = UIImage(named: "bg_heart.png")
-            }
-            else {
-                self.fichierImg.image = UIImage.init(contentsOfFile: imagePath!)
-            }
         }
     }
     

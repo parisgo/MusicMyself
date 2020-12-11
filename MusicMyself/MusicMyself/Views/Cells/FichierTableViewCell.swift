@@ -18,7 +18,6 @@ class FichierTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         fichierImage.layer.cornerRadius = 6
         fichierImage.layer.masksToBounds = true
@@ -28,16 +27,18 @@ class FichierTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         self.title.text = fichier?.title
+        self.author.text = fichier?.author
         
         self.fichierImage.contentMode = UIView.ContentMode.scaleAspectFit
+        self.fichierImage.image = Helper.getImage(id: fichier.id!)
         
-        let imagePath = Helper.checkImage(id: fichier.id!)
-        if(imagePath == nil) {
-            self.fichierImage.image = UIImage(named: "bg_heart.png")
+        showAnimation(display: false)
+        
+        guard MyPlayer.instance.audioPlayer != nil && MyPlayer.instance.audioPlayer.isPlaying && MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex].id == fichier.id! else {
+            return
         }
-        else {
-            self.fichierImage.image = UIImage.init(contentsOfFile: imagePath!)
-        }
+        
+        showAnimation(display: true)
     }
     
     func showAnimation(display: Bool) {
@@ -46,7 +47,6 @@ class FichierTableViewCell: UITableViewCell {
             viewPlayerAnimation.tag = 88
             self.fichierImage.addSubview(viewPlayerAnimation)
         }
-        
         else {
             if let viewWithTag = self.viewWithTag(88) {
                 viewWithTag.removeFromSuperview()
