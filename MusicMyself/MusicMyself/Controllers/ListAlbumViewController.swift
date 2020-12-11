@@ -30,8 +30,6 @@ class ListAlbumViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.imageView.image = UIImage(named: "bg_heart.png")
     }
     
     override func viewDidDisappear(_ animated : Bool) {
