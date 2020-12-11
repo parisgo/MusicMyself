@@ -18,6 +18,8 @@ class ListDetailViewController: UIViewController {
     var fichiers: [Fichier] = []
     var callback : (() -> Void)?
     
+    var cell: FichierTableViewCell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -152,8 +154,12 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         return fichiers.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
+        cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FichierTableViewCell
         cell?.fichier = fichiers[indexPath.row]
         
         if(indexPath.row % 2 == 0) {
@@ -166,13 +172,13 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        cell = tableView.cellForRow(at: indexPath!) as! FichierTableViewCell
+        cell?.fichier = fichiers[indexPath!.row]
+        
         MyPlayer.instance.fichiers = fichiers
-        MyPlayer.instance.currentFileIndex = indexPath.row
+        MyPlayer.instance.currentFileIndex = indexPath!.row
         
         playerView.setCurrentInfo()
         playerView.play()
@@ -180,6 +186,12 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         if(MyPlayer.instance.audioPlayer != nil) {
             MyPlayer.instance.audioPlayer.delegate = self
         }
+        
+        cell?.showAnimation(display: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {//
+        cell?.showAnimation(display: false)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

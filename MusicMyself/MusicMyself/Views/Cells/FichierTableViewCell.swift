@@ -12,6 +12,8 @@ class FichierTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var author: UILabel!
     
+    var viewPlayerAnimation: UIView!
+    
     var fichier: Fichier!
     
     override func awakeFromNib() {
@@ -35,6 +37,20 @@ class FichierTableViewCell: UITableViewCell {
         }
         else {
             self.fichierImage.image = UIImage.init(contentsOfFile: imagePath!)
+        }
+    }
+    
+    func showAnimation(display: Bool) {
+        if display {
+            viewPlayerAnimation = PlayerAnimationView(frame: CGRect(x: 0.0, y: 0.0, width: 100, height: 100))
+            viewPlayerAnimation.tag = 88
+            self.fichierImage.addSubview(viewPlayerAnimation)
+        }
+        
+        else {
+            if let viewWithTag = self.viewWithTag(88) {
+                viewWithTag.removeFromSuperview()
+            }
         }
     }
 

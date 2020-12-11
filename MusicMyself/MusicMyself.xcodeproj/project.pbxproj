@@ -39,6 +39,7 @@
 		4467DFA7257AD054001F4146 /* musicMyselfDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4467DFA6257AD054001F4146 /* musicMyselfDB.sqlite */; };
 		4467DFAF257AD5C2001F4146 /* Fichier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467DFAE257AD5C2001F4146 /* Fichier.swift */; };
 		4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467DFB3257AD6B3001F4146 /* FichierViewController.swift */; };
+		4477E14725835B9E00EC866C /* PlayerAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4477E14625835B9E00EC866C /* PlayerAnimationView.swift */; };
 		44C14CAC2579341E0029879F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C14CAB2579341E0029879F /* libz.tbd */; };
 		44C14CD7257934840029879F /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C14CBB257934840029879F /* GCDWebServerResponse.m */; };
 		44C14CD8257934840029879F /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C14CBE257934840029879F /* GCDWebServerRequest.m */; };
@@ -133,6 +134,7 @@
 		4467DFA6257AD054001F4146 /* musicMyselfDB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = musicMyselfDB.sqlite; sourceTree = "<group>"; };
 		4467DFAE257AD5C2001F4146 /* Fichier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fichier.swift; sourceTree = "<group>"; };
 		4467DFB3257AD6B3001F4146 /* FichierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FichierViewController.swift; sourceTree = "<group>"; };
+		4477E14625835B9E00EC866C /* PlayerAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAnimationView.swift; sourceTree = "<group>"; };
 		44C14CAB2579341E0029879F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		44C14CB9257934840029879F /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFunctions.h; sourceTree = "<group>"; };
 		44C14CBA257934840029879F /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerPrivate.h; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 			children = (
 				44D2DACC257D353D006FA187 /* PlayerView.swift */,
 				44D2DAE1257D3649006FA187 /* PlayerView.xib */,
+				4477E14625835B9E00EC866C /* PlayerAnimationView.swift */,
 			);
 			path = ReuseView;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4477E14725835B9E00EC866C /* PlayerAnimationView.swift in Sources */,
 				445F92DF257BCD68009AF09A /* ListViewController.swift in Sources */,
 				445F92E5257BD1F0009AF09A /* ListCollectionViewCell.swift in Sources */,
 				44D2DACD257D353D006FA187 /* PlayerView.swift in Sources */,
