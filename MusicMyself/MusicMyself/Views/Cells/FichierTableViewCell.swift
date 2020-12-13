@@ -25,6 +25,7 @@ class FichierTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.isUserInteractionEnabled = true
         
         self.title.text = fichier?.title
         self.author.text = fichier?.author

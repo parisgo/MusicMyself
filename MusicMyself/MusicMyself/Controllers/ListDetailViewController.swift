@@ -175,6 +175,7 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         
         MyPlayer.instance.fichiers = fichiers
         MyPlayer.instance.currentFileIndex = indexPath!.row
+        MyPlayer.instance.currentAlubmId = album.id
         
         playerView.setCurrentInfo()
         playerView.play()

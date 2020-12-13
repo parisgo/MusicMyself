@@ -10,7 +10,8 @@ import Foundation
 class Album: NSObject
 {
     var id: Int!
-    var title: String!
+    var title: String?
+    var author: String?
     var fIdFirst: Int!
     
     override init() {
@@ -28,7 +29,7 @@ class Album: NSObject
     func getList() -> [Album]! {
         var result = [Album]()
         let sql = """
-            select Album.AID, Album.ATitle, ifnull(FileMin.FId,0) as FIdFirst
+            select Album.AID, Album.ATitle, Album.Author, ifnull(FileMin.FId,0) as FIdFirst
             from Album
             left join (select AID, min(FID) as FId from AlbumFichier group by AID) As FileMin
             on Album.AId = FileMin.AID
@@ -43,6 +44,7 @@ class Album: NSObject
                     tmp = Album()
                     tmp.id = Int(results.int(forColumn: "AID"))
                     tmp.title = results.string(forColumn: "ATitle") ?? ""
+                    tmp.author = results.string(forColumn: "Author") ?? ""
                     tmp.fIdFirst = Int(results.int(forColumn: "FIdFirst"))
                     
                     result.append(tmp)
@@ -58,7 +60,7 @@ class Album: NSObject
     }
     
     func add(album: Album, fileIds: [Int]) {
-        let sqlAlbum = "insert into Album(ATitle) values(?)"
+        let sqlAlbum = "insert into Album(ATitle, Author) values(?, ?)"
         
         let db = BDD.instance.database!
         do {
@@ -68,7 +70,7 @@ class Album: NSObject
                     albumId = aId
                 }
                 else {
-                    _ = try db.executeUpdate(sqlAlbum, values: [album.title!])
+                    _ = try db.executeUpdate(sqlAlbum, values: [album.title!, album.author])
                     albumId = Int(db.lastInsertRowId)
                 }
                 

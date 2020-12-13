@@ -31,6 +31,7 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
         if let tmp = fichier {
             fichierTitle.text = tmp.title
             fichierAuthor.text = tmp.author
+            fichierImg.image = Helper.getImage(id: tmp.id)
         }
     }
     

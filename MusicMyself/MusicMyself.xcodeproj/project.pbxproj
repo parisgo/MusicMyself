@@ -40,6 +40,8 @@
 		4467DFAF257AD5C2001F4146 /* Fichier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467DFAE257AD5C2001F4146 /* Fichier.swift */; };
 		4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467DFB3257AD6B3001F4146 /* FichierViewController.swift */; };
 		4477E14725835B9E00EC866C /* PlayerAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4477E14625835B9E00EC866C /* PlayerAnimationView.swift */; };
+		44BD7B7F25862C4300EC7CFC /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD7B7E25862C4300EC7CFC /* PlayerListViewController.swift */; };
+		44BD7B852586527C00EC7CFC /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BD7B842586527C00EC7CFC /* Info.swift */; };
 		44C14CAC2579341E0029879F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C14CAB2579341E0029879F /* libz.tbd */; };
 		44C14CD7257934840029879F /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C14CBB257934840029879F /* GCDWebServerResponse.m */; };
 		44C14CD8257934840029879F /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C14CBE257934840029879F /* GCDWebServerRequest.m */; };
@@ -135,6 +137,8 @@
 		4467DFAE257AD5C2001F4146 /* Fichier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fichier.swift; sourceTree = "<group>"; };
 		4467DFB3257AD6B3001F4146 /* FichierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FichierViewController.swift; sourceTree = "<group>"; };
 		4477E14625835B9E00EC866C /* PlayerAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAnimationView.swift; sourceTree = "<group>"; };
+		44BD7B7E25862C4300EC7CFC /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
+		44BD7B842586527C00EC7CFC /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		44C14CAB2579341E0029879F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		44C14CB9257934840029879F /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFunctions.h; sourceTree = "<group>"; };
 		44C14CBA257934840029879F /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerPrivate.h; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 				44C40588257B9EA80010581E /* Helper.swift */,
 				445F92EA257BD406009AF09A /* ViewExtension.swift */,
 				443423A925814C7D00672DFF /* Extensionx.swift */,
+				44BD7B842586527C00EC7CFC /* Info.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 				445F92FA257C1AA8009AF09A /* ListDetailViewController.swift */,
 				441EA065257FFEE000F8DF6A /* ListAlbumViewController.swift */,
 				441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */,
+				44BD7B7E25862C4300EC7CFC /* PlayerListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -640,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4477E14725835B9E00EC866C /* PlayerAnimationView.swift in Sources */,
+				44BD7B852586527C00EC7CFC /* Info.swift in Sources */,
 				445F92DF257BCD68009AF09A /* ListViewController.swift in Sources */,
 				445F92E5257BD1F0009AF09A /* ListCollectionViewCell.swift in Sources */,
 				44D2DACD257D353D006FA187 /* PlayerView.swift in Sources */,
@@ -661,6 +668,7 @@
 				4467DF90257ACA64001F4146 /* FMDatabaseAdditions.m in Sources */,
 				445240772578124800DD5E60 /* SceneDelegate.swift in Sources */,
 				445F92EB257BD406009AF09A /* ViewExtension.swift in Sources */,
+				44BD7B7F25862C4300EC7CFC /* PlayerListViewController.swift in Sources */,
 				441EA066257FFEE000F8DF6A /* ListAlbumViewController.swift in Sources */,
 				441EA0722580077500F8DF6A /* ListAlbumSelectTableViewCell.swift in Sources */,
 				4467DF92257ACA64001F4146 /* FMDatabasePool.m in Sources */,

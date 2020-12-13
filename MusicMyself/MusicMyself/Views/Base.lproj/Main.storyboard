@@ -87,6 +87,31 @@
             </objects>
             <point key="canvasLocation" x="3133.5999999999999" y="311.69415292353824"/>
         </scene>
+        <!--Player List View Controller-->
+        <scene sceneID="oqC-m2-ZbR">
+            <objects>
+                <viewController storyboardIdentifier="PlayerListViewController" id="dlZ-df-uPU" customClass="PlayerListViewController" customModule="MusicMyself" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v48-lk-dq0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sNl-Uj-FDz">
+                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xvl-cK-nXs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="sNl-Uj-FDz" id="tYF-JX-YYY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nPS-u4-Z00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3855.1999999999998" y="333.28335832083962"/>
+        </scene>
         <!--List View Controller-->
         <scene sceneID="Kj9-qM-tVm">
             <objects>

@@ -15,6 +15,7 @@ class MyPlayer {
     var audioPlayer:AVAudioPlayer! = nil
     var currentFileIndex = 0
     var fichiers: [Fichier]!
+    var currentAlubmId = 0
     var isLoop: Bool = false
     var isRepeat: Bool = false
     
@@ -57,6 +58,17 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        let tapCell = UITapGestureRecognizer(target: self, action: #selector(self.cellTapped))
+        self.addGestureRecognizer(tapCell)
+        self.isUserInteractionEnabled = true
+    }
+    
+    @objc func cellTapped(sender: UITapGestureRecognizer) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "PlayerListViewController") as? PlayerListViewController {
+            self.parentViewController?.present(controller, animated: true)
+        }
     }
     
     override func willMove(toWindow newWindow: UIWindow?) {

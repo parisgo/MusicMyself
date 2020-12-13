@@ -41,6 +41,7 @@ class ListViewController: UIViewController {
         
         if(MyPlayer.instance.audioPlayer == nil) {
             MyPlayer.instance.fichiers = Fichier().getListByAlbum(aId: 1);
+            MyPlayer.instance.currentAlubmId = 1
         }
         else {
             MyPlayer.instance.audioPlayer.delegate = self
