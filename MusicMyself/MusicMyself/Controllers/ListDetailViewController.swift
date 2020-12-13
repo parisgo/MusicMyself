@@ -24,8 +24,12 @@ class ListDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
+        tableView.dragInteractionEnabled = true
         tableView.separatorStyle = .none
         
         let layout = UICollectionViewFlowLayout()
@@ -252,3 +256,23 @@ extension ListDetailViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension ListDetailViewController: UITableViewDragDelegate, UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let counter = fichiers[indexPath.row]
+        let itemProvider = NSItemProvider(object: counter)
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+
+        return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let mover = fichiers.remove(at: sourceIndexPath.row)
+        fichiers.insert(mover, at: destinationIndexPath.row)
+        
+        Fichier().updateOrder(aId: album.id, fichers: fichiers)
+        self.tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+    }
+}

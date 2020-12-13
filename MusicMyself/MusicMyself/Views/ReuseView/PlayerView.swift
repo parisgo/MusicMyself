@@ -82,8 +82,8 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
                 }
             }
             
-            //self.parentViewController?.present(controller, animated: true)
-            self.parentViewController?.navigationController!.pushViewController(controller, animated: true)
+            self.parentViewController?.present(controller, animated: true)
+            //self.parentViewController?.navigationController!.pushViewController(controller, animated: true)
         }
     }
     

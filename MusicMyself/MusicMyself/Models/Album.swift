@@ -31,7 +31,7 @@ class Album: NSObject
         let sql = """
             select Album.AID, Album.ATitle, Album.Author, ifnull(FileMin.FId,0) as FIdFirst
             from Album
-            left join (select AID, min(FID) as FId from AlbumFichier group by AID) As FileMin
+            left join (select AID, min(FID) as FId from AlbumFichier where FOrder = 0 group by AID) As FileMin
             on Album.AId = FileMin.AID
         """
         

@@ -120,17 +120,10 @@ extension PlayerListViewController: UITableViewDragDelegate, UITableViewDropDele
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let src  = fichiers[sourceIndexPath.row]
-        let dest = fichiers[destinationIndexPath.row]
-        
-        let srcOrder = src.id != src.ordre ? src.ordre : src.id
-        let destOrder = dest.id != dest.ordre ? dest.ordre : dest.id
-        
         let mover = fichiers.remove(at: sourceIndexPath.row)
         fichiers.insert(mover, at: destinationIndexPath.row)
         
-        print("******** aId:\(albumId), srcId:\(src.id), destId:\(dest.id)")
-        Fichier().updateOrder(aId: albumId, srcId: src.id, srcOrder: srcOrder!, destId: dest.id, destOrder: destOrder!)
+        Fichier().updateOrder(aId: albumId, fichers: fichiers)
         
         self.reloadTableView()
     }

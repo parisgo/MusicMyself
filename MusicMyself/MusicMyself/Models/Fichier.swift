@@ -33,13 +33,13 @@ class Fichier: NSObject, Codable
     }
     
     func getList() -> [Fichier]! {
-        let sql = "select * from Fichier"
+        let sql = "select fid, fname, ftitle, fid as ordre from Fichier"
         
         return getListFromSql(sql: sql)
     }
     
     func getListByAlbum(aId: Int) -> [Fichier]! {
-        let sql = "select Fichier.fid, fname, ftitle, AlbumFichier.FOrder as ordre from Fichier inner join AlbumFichier on Fichier.FID = AlbumFichier.FID where AlbumFichier.AId = \(aId) order by AlbumFichier.FOrder, Fichier.FID"
+        let sql = "select Fichier.fid, fname, ftitle, AlbumFichier.FOrder as ordre from Fichier inner join AlbumFichier on Fichier.FID = AlbumFichier.FID where AlbumFichier.AId = \(aId) order by AlbumFichier.FOrder"
         
         return getListFromSql(sql: sql)
     }
@@ -72,14 +72,13 @@ class Fichier: NSObject, Codable
         return result
     }
     
-    func updateOrder(aId: Int, srcId: Int, srcOrder: Int, destId: Int, destOrder: Int) {
-        let sql = "update AlbumFichier set FOrder = (?) where AID = (?) and FID = (?)"
-        
+    func updateOrder(aId: Int, fichers: [Fichier]) {
         let db = BDD.instance.database!
         do {
             if db.open() {
-                _ = try db.executeUpdate(sql, values: [destOrder, aId, srcId])
-                _ = try db.executeUpdate(sql, values: [srcOrder, aId, destId])
+                for (index, obj) in fichers.enumerated() {
+                    try db.executeUpdate("update AlbumFichier set FOrder = (?) where AID = (?) and FID = (?)", values: [index, aId, obj.id])
+                }
                 
                 db.close()
             }
