@@ -19,8 +19,10 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        fichierTitle.delegate = self
+        fichierAuthor.delegate = self
+        
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         fichierImg.addGestureRecognizer(tapGR)
         fichierImg.isUserInteractionEnabled = true
@@ -89,4 +91,18 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
     }
     */
 
+}
+
+extension FichierDetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
+    }
 }

@@ -15,7 +15,7 @@ class MyPlayer {
     var audioPlayer:AVAudioPlayer! = nil
     var currentFileIndex = 0
     var fichiers: [Fichier]!
-    var currentAlubmId = 0
+    var currentAlbumId = 0
     var isLoop: Bool = false
     var isRepeat: Bool = false
     
@@ -28,9 +28,7 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
     @IBOutlet weak var labFileTitle: UILabel!
     @IBOutlet weak var labFileAuthor: UILabel!
     @IBOutlet weak var imgFile: UIImageView!
-    
-    var album: Album!
-    
+   
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initView()
@@ -64,17 +62,29 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         self.isUserInteractionEnabled = true
     }
     
-    @objc func cellTapped(sender: UITapGestureRecognizer) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let controller = storyboard.instantiateViewController(withIdentifier: "PlayerListViewController") as? PlayerListViewController {
-            self.parentViewController?.present(controller, animated: true)
-        }
-    }
-    
     override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         
         setCurrentInfo()
+    }
+    
+    @objc func cellTapped(sender: UITapGestureRecognizer) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let controller = storyboard.instantiateViewController(withIdentifier: "PlayerListViewController") as? PlayerListViewController {
+            controller.callback = {
+                guard self.parentViewController != nil else {
+                    return
+                }
+                
+                let view = self.parentViewController as? ListDetailViewController
+                if view != nil {
+                    controller.tableView.reloadData()
+                }
+            }
+            
+            //self.parentViewController?.present(controller, animated: true)
+            self.parentViewController?.navigationController!.pushViewController(controller, animated: true)
+        }
     }
     
     @IBAction func btnMore(_ sender: Any) {

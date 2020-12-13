@@ -175,7 +175,7 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         
         MyPlayer.instance.fichiers = fichiers
         MyPlayer.instance.currentFileIndex = indexPath!.row
-        MyPlayer.instance.currentAlubmId = album.id
+        MyPlayer.instance.currentAlbumId = album.id
         
         playerView.setCurrentInfo()
         playerView.play()
@@ -222,7 +222,7 @@ extension ListDetailViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

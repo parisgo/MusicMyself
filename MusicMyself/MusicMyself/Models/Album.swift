@@ -78,7 +78,7 @@ class Album: NSObject
                     return
                 }
                 for i in fileIds {
-                    try db.executeUpdate("insert into AlbumFichier(AID, FID) values(?,?)", values: [albumId, i])
+                    try db.executeUpdate("insert into AlbumFichier(AID, FID, FOrder) values(?,?,?)", values: [albumId, i, i])
                 }
                 
                 db.close()

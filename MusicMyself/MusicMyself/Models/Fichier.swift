@@ -15,6 +15,9 @@ class Fichier: NSObject, Codable
     var name: String!
     var author: String!
     
+    //from table AlbumFichier
+    var ordre: Int!
+    
     override init() {
     }
     
@@ -36,7 +39,7 @@ class Fichier: NSObject, Codable
     }
     
     func getListByAlbum(aId: Int) -> [Fichier]! {
-        let sql = "select Fichier.fid, fname,ftitle from Fichier inner join AlbumFichier on Fichier.FID = AlbumFichier.FID where AlbumFichier.AId = \(aId) order by AlbumFichier.FOrder, Fichier.FID"
+        let sql = "select Fichier.fid, fname, ftitle, AlbumFichier.FOrder as ordre from Fichier inner join AlbumFichier on Fichier.FID = AlbumFichier.FID where AlbumFichier.AId = \(aId) order by AlbumFichier.FOrder, Fichier.FID"
         
         return getListFromSql(sql: sql)
     }
@@ -54,6 +57,7 @@ class Fichier: NSObject, Codable
                     tmp.id = Int(results.int(forColumn: "FID"))
                     tmp.title = results.string(forColumn: "FTitle") ?? ""
                     tmp.name = results.string(forColumn: "FName") ?? ""
+                    tmp.ordre = Int(results.int(forColumn: "ordre"))
                     
                     result.append(tmp)
                 }
@@ -74,8 +78,8 @@ class Fichier: NSObject, Codable
         let db = BDD.instance.database!
         do {
             if db.open() {
-                _ = try db.executeUpdate(sql, values: [srcOrder, aId, srcId])
-                _ = try db.executeUpdate(sql, values: [destOrder, aId, destId])
+                _ = try db.executeUpdate(sql, values: [destOrder, aId, srcId])
+                _ = try db.executeUpdate(sql, values: [srcOrder, aId, destId])
                 
                 db.close()
             }

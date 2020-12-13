@@ -22,6 +22,7 @@ class ListCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        MyPlayer.instance.currentAlbumId = album.id!
         self.listTitle.text = album?.title
         self.listImage.image = Helper.getImage(id: (album?.fIdFirst)!)
     }

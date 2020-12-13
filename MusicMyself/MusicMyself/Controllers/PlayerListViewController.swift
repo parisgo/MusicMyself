@@ -12,6 +12,8 @@ class PlayerListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var callback : (() -> Void)?
+    
     var fichiers: [Fichier] = []
     var albumId: Int = 0
     
@@ -34,8 +36,18 @@ class PlayerListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
-        fichiers = MyPlayer.instance.fichiers
-        albumId = MyPlayer.instance.currentAlubmId
+        self.reloadTableView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        callback?()
+    }
+    
+    func reloadTableView() {
+        albumId = MyPlayer.instance.currentAlbumId
+        fichiers = Fichier().getListByAlbum(aId: albumId)
+        MyPlayer.instance.fichiers = fichiers
         
         guard fichiers.count > 0 else {
             return
@@ -111,11 +123,16 @@ extension PlayerListViewController: UITableViewDragDelegate, UITableViewDropDele
         let src  = fichiers[sourceIndexPath.row]
         let dest = fichiers[destinationIndexPath.row]
         
+        let srcOrder = src.id != src.ordre ? src.ordre : src.id
+        let destOrder = dest.id != dest.ordre ? dest.ordre : dest.id
+        
         let mover = fichiers.remove(at: sourceIndexPath.row)
         fichiers.insert(mover, at: destinationIndexPath.row)
         
-        Fichier().updateOrder(aId: albumId, srcId: src.id, srcOrder: destinationIndexPath.row, destId: dest.id, destOrder: sourceIndexPath.row)
-        tableView.reloadData()
+        print("******** aId:\(albumId), srcId:\(src.id), destId:\(dest.id)")
+        Fichier().updateOrder(aId: albumId, srcId: src.id, srcOrder: srcOrder!, destId: dest.id, destOrder: destOrder!)
+        
+        self.reloadTableView()
     }
     
 //    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
