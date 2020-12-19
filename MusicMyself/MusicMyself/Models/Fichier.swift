@@ -14,6 +14,7 @@ class Fichier: NSObject, Codable
     var title: String!
     var name: String!
     var author: String!
+    var info: String!
     
     //from table AlbumFichier
     var ordre: Int!
@@ -32,19 +33,31 @@ class Fichier: NSObject, Codable
         return self.id == other.id
     }
     
-    func getList() -> [Fichier]! {
-        let sql = "select fid, fname, ftitle, fid as ordre from Fichier"
+    func get(id: Int) -> Fichier? {
+        var fichier: Fichier?
+
+        let sql = "select fid, fname, ftitle, fid as ordre, fAuthor, FInfo from Fichier where FID = \(id)"
+        let list = getListFromSql(sql: sql, needInfo: true)        
+        if list!.count > 0 {
+            fichier = list![0]
+        }
         
-        return getListFromSql(sql: sql)
+        return fichier
+    }
+    
+    func getList() -> [Fichier]! {
+        let sql = "select fid, fname, ftitle, fid as ordre, fAuthor from Fichier"
+        
+        return getListFromSql(sql: sql, needInfo: false)
     }
     
     func getListByAlbum(aId: Int) -> [Fichier]! {
-        let sql = "select Fichier.fid, fname, ftitle, AlbumFichier.FOrder as ordre from Fichier inner join AlbumFichier on Fichier.FID = AlbumFichier.FID where AlbumFichier.AId = \(aId) order by AlbumFichier.FOrder"
+        let sql = "select Fichier.fid, fname, ftitle, AlbumFichier.FOrder as ordre, FAuthor from Fichier inner join AlbumFichier on Fichier.FID = AlbumFichier.FID where AlbumFichier.AId = \(aId) order by AlbumFichier.FOrder"
         
-        return getListFromSql(sql: sql)
+        return getListFromSql(sql: sql, needInfo: false)
     }
     
-    func getListFromSql(sql: String) -> [Fichier]! {
+    func getListFromSql(sql: String, needInfo: Bool) -> [Fichier]! {
         var result = [Fichier]()
         
         let db = BDD.instance.database!
@@ -57,7 +70,12 @@ class Fichier: NSObject, Codable
                     tmp.id = Int(results.int(forColumn: "FID"))
                     tmp.title = results.string(forColumn: "FTitle") ?? ""
                     tmp.name = results.string(forColumn: "FName") ?? ""
+                    tmp.author = results.string(forColumn: "FAuthor") ?? ""
                     tmp.ordre = Int(results.int(forColumn: "ordre"))
+                    
+                    if needInfo {
+                        tmp.info = results.string(forColumn: "FInfo") ?? ""
+                    }
                     
                     result.append(tmp)
                 }
@@ -80,6 +98,21 @@ class Fichier: NSObject, Codable
                     try db.executeUpdate("update AlbumFichier set FOrder = (?) where AID = (?) and FID = (?)", values: [index, aId, obj.id])
                 }
                 
+                db.close()
+            }
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+    }
+    
+    func update(fichier: Fichier) {
+        let sql = "update Fichier set FTitle = (?), FAuthor = (?), FInfo = (?) where FId = (?)"
+        
+        let db = BDD.instance.database!
+        do {
+            if db.open() {
+                _ = try db.executeUpdate(sql, values: [fichier.title, fichier.author, fichier.info, fichier.id])
                 db.close()
             }
         }

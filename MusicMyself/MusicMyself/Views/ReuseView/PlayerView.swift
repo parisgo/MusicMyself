@@ -78,7 +78,6 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
                 
                 let view = self.parentViewController as? ListDetailViewController
                 if view != nil {
-                    controller.tableView.reloadData()
                 }
             }
             

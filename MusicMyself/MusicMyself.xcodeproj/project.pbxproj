@@ -24,6 +24,7 @@
 		445240972578124B00DD5E60 /* MusicMyselfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240962578124B00DD5E60 /* MusicMyselfUITests.swift */; };
 		445240B3257824FB00DD5E60 /* WifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445240B2257824FB00DD5E60 /* WifiViewController.swift */; };
 		445240C1257826BC00DD5E60 /* bg_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 445240C0257826BC00DD5E60 /* bg_heart.png */; };
+		4456C72E2589532000250FEA /* PlayerWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456C72D2589532000250FEA /* PlayerWaveView.swift */; };
 		445F92DF257BCD68009AF09A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92DE257BCD68009AF09A /* ListViewController.swift */; };
 		445F92E5257BD1F0009AF09A /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445F92E3257BD1F0009AF09A /* ListCollectionViewCell.swift */; };
 		445F92E6257BD1F0009AF09A /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 445F92E4257BD1F0009AF09A /* ListCollectionViewCell.xib */; };
@@ -115,6 +116,7 @@
 		445240982578124B00DD5E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		445240B2257824FB00DD5E60 /* WifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiViewController.swift; sourceTree = "<group>"; };
 		445240C0257826BC00DD5E60 /* bg_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_heart.png; sourceTree = "<group>"; };
+		4456C72D2589532000250FEA /* PlayerWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWaveView.swift; sourceTree = "<group>"; };
 		445F92DE257BCD68009AF09A /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		445F92E3257BD1F0009AF09A /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		445F92E4257BD1F0009AF09A /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				44D2DACC257D353D006FA187 /* PlayerView.swift */,
 				44D2DAE1257D3649006FA187 /* PlayerView.xib */,
 				4477E14625835B9E00EC866C /* PlayerAnimationView.swift */,
+				4456C72D2589532000250FEA /* PlayerWaveView.swift */,
 			);
 			path = ReuseView;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */,
 				445F92F3257BD9E5009AF09A /* Album.swift in Sources */,
 				44D4A7EF257B7169008006D5 /* FichierDB.m in Sources */,
+				4456C72E2589532000250FEA /* PlayerWaveView.swift in Sources */,
 				4467DF8E257ACA64001F4146 /* BDD.swift in Sources */,
 				44C14CE2257934840029879F /* GCDWebServerDataRequest.m in Sources */,
 				44C4057A257B8CD90010581E /* FichierDetailViewController.swift in Sources */,

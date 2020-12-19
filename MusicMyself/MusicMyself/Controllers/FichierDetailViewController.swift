@@ -7,11 +7,12 @@
 
 import UIKit
 
-class FichierDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FichierDetailViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var fichierImg: UIImageView!
     @IBOutlet weak var fichierTitle: UITextField!
     @IBOutlet weak var fichierAuthor: UITextField!
+    @IBOutlet weak var fichierDetail: UITextView!
     
     var fichier: Fichier!
     
@@ -26,20 +27,29 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         fichierImg.addGestureRecognizer(tapGR)
         fichierImg.isUserInteractionEnabled = true
+        
+        self.hideKeyboardWhenTappedAround()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
-        if let tmp = fichier {
-            fichierTitle.text = tmp.title
-            fichierAuthor.text = tmp.author
-            fichierImg.image = Helper.getImage(id: tmp.id)
+        if let file = Fichier().get(id: fichier.id) {
+            fichierTitle.text = file.title
+            fichierAuthor.text = file.author
+            fichierDetail.text = file.info
         }
+        
+        fichierImg.image = Helper.getImage(id: fichier.id)
     }
     
     override func viewDidDisappear(_ animated : Bool) {
         super.viewDidDisappear(animated)
         callback?()
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func imageTapped(sender: UITapGestureRecognizer) {
@@ -47,6 +57,32 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
             showUpload()
         }
     }
+    
+    @objc func keyboardWillChange(notification: Notification) {
+        print("keyboard will show: \(notification.name.rawValue)")
+        
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            view.frame.origin.y = -keyboardRect.height
+        }
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    @IBAction func doneClick(_ sender: Any) {
+        fichier.title = fichierTitle.text
+        fichier.author = fichierAuthor.text
+        fichier.info = fichierDetail.text
+        
+        Fichier().update(fichier: fichier)
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     func showUpload() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
@@ -60,6 +96,12 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
+    @IBAction func btnBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension FichierDetailViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
         let pickedImage = info[.originalImage] as! UIImage
          
@@ -76,21 +118,6 @@ class FichierDetailViewController: UIViewController, UIImagePickerControllerDele
          
         picker.dismiss(animated: true, completion:nil)
     }
-    
-    @IBAction func btnBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension FichierDetailViewController: UITextFieldDelegate {
