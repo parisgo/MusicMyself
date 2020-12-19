@@ -34,9 +34,8 @@ class PlayerListViewController: UIViewController {
             labTitle.text = file.title
             labAuthor.text = file.author
             labDetail.text = file.info
+            imgView.image = Helper.getImage(id: file.id)
         }
-        
-        imgView.image = Helper.getImage(id: MyPlayer.instance.currentFileIndex)
         
 //        let viewPlayer = PlayerWaveView(frame: CGRect(x: 0.0, y: 0.0, width: 100, height: 100))
 //        self.imgView.addSubview(viewPlayer)

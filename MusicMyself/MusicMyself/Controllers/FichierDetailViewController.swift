@@ -22,7 +22,9 @@ class FichierDetailViewController: UIViewController, UINavigationControllerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         fichierTitle.delegate = self
+        fichierTitle.addBottomBorder()
         fichierAuthor.delegate = self
+        fichierAuthor.addBottomBorder()
         
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         fichierImg.addGestureRecognizer(tapGR)

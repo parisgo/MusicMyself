@@ -26,6 +26,8 @@ class ListAlbumViewController: UIViewController {
     
         let nib = UINib(nibName:"FichierTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
+        
+        txtTitle.addBottomBorder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
