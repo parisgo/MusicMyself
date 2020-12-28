@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44055D032597CBD100937439 /* UICustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44055D022597CBD100937439 /* UICustom.swift */; };
 		44127DB82579639300E75A8D /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44127DB72579639300E75A8D /* DirectoryMonitor.swift */; };
 		441EA066257FFEE000F8DF6A /* ListAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA065257FFEE000F8DF6A /* ListAlbumViewController.swift */; };
 		441EA06B2580013C00F8DF6A /* ListAlbumSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */; };
@@ -93,6 +94,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44055D022597CBD100937439 /* UICustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustom.swift; sourceTree = "<group>"; };
 		44127DB72579639300E75A8D /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		441EA065257FFEE000F8DF6A /* ListAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumViewController.swift; sourceTree = "<group>"; };
 		441EA06A2580013C00F8DF6A /* ListAlbumSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlbumSelectViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				445F92EA257BD406009AF09A /* ViewExtension.swift */,
 				443423A925814C7D00672DFF /* Extensionx.swift */,
 				44BD7B842586527C00EC7CFC /* Info.swift */,
+				44055D022597CBD100937439 /* UICustom.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				4467DF91257ACA64001F4146 /* FMDatabase.m in Sources */,
 				4467DFB4257AD6B3001F4146 /* FichierViewController.swift in Sources */,
 				445F92F3257BD9E5009AF09A /* Album.swift in Sources */,
+				44055D032597CBD100937439 /* UICustom.swift in Sources */,
 				44D4A7EF257B7169008006D5 /* FichierDB.m in Sources */,
 				4456C72E2589532000250FEA /* PlayerWaveView.swift in Sources */,
 				4467DF8E257ACA64001F4146 /* BDD.swift in Sources */,

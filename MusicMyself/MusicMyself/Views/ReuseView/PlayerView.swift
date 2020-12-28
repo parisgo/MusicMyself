@@ -12,23 +12,107 @@ import MediaPlayer
 class MyPlayer {
     static let instance = MyPlayer()
     
-    var audioPlayer:AVAudioPlayer! = nil
     var currentFileIndex = 0
-    var fichiers: [Fichier]!
+    var fichiers: [Fichier] = []
     var currentAlbumId = 0
     var isLoop: Bool = false
     var isRepeat: Bool = false
     
-    private init() {}
+    var engine = AVAudioEngine()
+    var player = AVAudioPlayerNode()
+    var rateEffect = AVAudioUnitTimePitch()
+    var audioFormat: AVAudioFormat?
+    
+    var updater: CADisplayLink?
+    
+    var currentPosition: AVAudioFramePosition = 0
+    var seekFrame: AVAudioFramePosition = 0
+    var audioLengthSamples: AVAudioFramePosition = 0
+    var audioSampleRate: Float = 0
+    var audioLengthSeconds: Float = 0
+    
+    let minDb: Float = -80.0
+    
+    var isPlaying: Bool {
+        return player.isPlaying
+    }
+    
+    var currentFrame: AVAudioFramePosition {
+      guard let lastRenderTime = player.lastRenderTime,
+        let playerTime = player.playerTime(forNodeTime: lastRenderTime) else {
+          return 0
+      }
+
+      return playerTime.sampleTime
+    }
+    
+    enum TimeConstant {
+      static let secsPerMin = 60
+      static let secsPerHour = TimeConstant.secsPerMin * 60
+    }
+    
+    var audioFile: AVAudioFile? {
+      didSet {
+        if let audioFile = audioFile {
+          audioLengthSamples = audioFile.length
+          audioFormat = audioFile.processingFormat
+          audioSampleRate = Float(audioFormat?.sampleRate ?? 44100)
+          audioLengthSeconds = Float(audioLengthSamples) / audioSampleRate
+        }
+      }
+    }
+    
+    var audioFileURL: URL? {
+      didSet {
+        if let audioFileURL = audioFileURL {
+          audioFile = try? AVAudioFile(forReading: audioFileURL)
+        }
+      }
+    }
+    
+    private init() {
+        engine.attach(player)
+        engine.attach(rateEffect)
+        engine.connect(player, to: rateEffect, format: audioFormat)
+        engine.connect(rateEffect, to: engine.mainMixerNode, format: audioFormat)
+
+        engine.prepare()
+        
+        do {
+            try engine.start()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func skip(newPosition: Float) {
+        guard let audioFile = audioFile,
+          let updater = updater else {
+          return
+        }
+        
+        //seekFrame = AVAudioFramePosition(5000)
+        currentPosition = AVAudioFramePosition(newPosition)
+        
+        player.stop()
+        
+        if currentPosition < audioLengthSamples {
+            player.scheduleSegment(audioFile, startingFrame: currentPosition, frameCount: AVAudioFrameCount(audioLengthSamples - AVAudioFramePosition(newPosition)), at: nil) { [weak self] in
+                  }
+
+            if !updater.isPaused {
+                player.play()
+            }
+        }
+    }
 }
 
-class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
-    
+class PlayerView: UIView, UIActionSheetDelegate {
     @IBOutlet weak var btnStartStop: UIButton!    
     @IBOutlet weak var labFileTitle: UILabel!
     @IBOutlet weak var labFileAuthor: UILabel!
     @IBOutlet weak var imgFile: UIImageView!
-   
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initView()
@@ -60,12 +144,14 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         let tapCell = UITapGestureRecognizer(target: self, action: #selector(self.cellTapped))
         self.addGestureRecognizer(tapCell)
         self.isUserInteractionEnabled = true
+        
     }
     
     override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         
         setCurrentInfo()
+        showButtonImage()
     }
     
     @objc func cellTapped(sender: UITapGestureRecognizer) {
@@ -87,7 +173,7 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
     }
     
     @IBAction func btnMore(_ sender: Any) {
-        guard MyPlayer.instance.fichiers != nil && MyPlayer.instance.fichiers.count > 0 else {
+        guard MyPlayer.instance.fichiers.count > 0 else {
             return
         }
         
@@ -126,23 +212,9 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         self.startOrStop()
     }
     
-    func showButtonImage(isStart: Bool) {
-        let play = UIImage(named: "player_start.png")
-        let stop = UIImage(named: "player_stop.png")
-        
-        if(isStart) {
-            btnStartStop.setImage(play, for: .normal)
-        }
-        else {
-            btnStartStop.setImage(stop, for: .normal)
-        }
-    }
-    
-    func play(){
-        setPlayDameon();
-        
-        guard MyPlayer.instance.fichiers != nil && MyPlayer.instance.fichiers.count > 0 else {
-            showButtonImage(isStart: true)
+    func play(){        
+        guard MyPlayer.instance.fichiers.count > 0 else {
+            showButtonImage()
             return
         }
         
@@ -152,34 +224,73 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
             return;
         }
         
-        MyPlayer.instance.audioPlayer = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath!))
-        MyPlayer.instance.audioPlayer.delegate = self;
-        MyPlayer.instance.audioPlayer.play()
+        setCurrentInfo()
+        showButtonImage()
         
-        labFileTitle.text = currentFile.title
-        labFileAuthor.text = currentFile.author
-        imgFile.image = Helper.getImage(id: currentFile.id)
-        
-        showButtonImage(isStart: false)
+        startAudio()
+        setPlayDameon()
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyArtist : currentFile.author,  MPMediaItemPropertyTitle : currentFile.title]
     }
     
+    func startAudio() {
+        let currentFile = MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex]
+        let filePath = Helper.checkFile(name: currentFile.name)
+        guard filePath != nil else {
+          return;
+        }
+        
+        MyPlayer.instance.audioFileURL = URL(fileURLWithPath: filePath!)
+
+        scheduleAudioFile()
+        MyPlayer.instance.player.play()
+    }
+    
+    func scheduleAudioFile() {
+        guard let audioFile = MyPlayer.instance.audioFile else { return }
+
+        MyPlayer.instance.player.scheduleFile(audioFile, at: nil, completionCallbackType: .dataPlayedBack, completionHandler: {_ in
+            print("*** audio length: \(MyPlayer.instance.audioLengthSamples)  current: \(MyPlayer.instance.currentFrame)")
+            if Float(MyPlayer.instance.currentFrame) >= Float(MyPlayer.instance.audioLengthSamples) * 0.9 {
+                self.playerDidFinish()
+            }
+        })
+    }
+    
     func setCurrentInfo() {
-        guard MyPlayer.instance.fichiers != nil && MyPlayer.instance.fichiers.count > 0 else {
+        guard MyPlayer.instance.fichiers.count > 0 else {
             return
         }
         
-        let cur = MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex]
-        labFileTitle.text = cur.title
-        labFileAuthor.text = cur.author
-        imgFile.image = Helper.getImage(id: cur.id)
-        
-        guard MyPlayer.instance.audioPlayer != nil else {
-            return
+        DispatchQueue.main.async {
+            let cur = MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex]
+            self.labFileTitle.text = cur.title
+            self.labFileAuthor.text = cur.author
+            self.imgFile.image = Helper.getImage(id: cur.id)
         }
-        
-        showButtonImage(isStart: !MyPlayer.instance.audioPlayer.isPlaying)
+    }
+    
+    func showButtonImage() {
+        DispatchQueue.main.async {
+            let play = UIImage(named: "player_start.png")
+            let stop = UIImage(named: "player_stop.png")
+            
+            if MyPlayer.instance.isPlaying {
+                self.btnStartStop.setImage(stop, for: .normal)
+            }
+            else {
+                self.btnStartStop.setImage(play, for: .normal)
+            }
+            
+            //refresh dynamic bar
+            guard self.parentViewController != nil else {
+                return
+            }
+                
+            if let detailView = self.parentViewController as? ListDetailViewController {
+                detailView.tableView.reloadData()
+            }
+        }
     }
     
     func setPlayDameon() {
@@ -198,6 +309,11 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
             return
         }
         
+        if MyPlayer.instance.isLoop == false && MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count-1 {
+            showButtonImage()
+            return;
+        }
+        
         if(MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count - 1) {
             MyPlayer.instance.currentFileIndex = 0;
         }
@@ -205,25 +321,16 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
             MyPlayer.instance.currentFileIndex+=1
         }
         
-        if (!MyPlayer.instance.isLoop) && MyPlayer.instance.currentFileIndex == MyPlayer.instance.fichiers.count - 1 {
-            return;
-        }
-        
         play()
     }
     
     func startOrStop() {
-        if(MyPlayer.instance.audioPlayer != nil && MyPlayer.instance.audioPlayer.isPlaying) {
-            MyPlayer.instance.audioPlayer.stop()
-            showButtonImage(isStart: true)
+        if(MyPlayer.instance.isPlaying) {
+            MyPlayer.instance.player.stop()
+            showButtonImage()
         }
         else {
             play()
-            showButtonImage(isStart: false)
-        }
-        
-        if let detailView = self.parentViewController as? ListDetailViewController {
-            detailView.tableView.reloadData()
         }
     }
     
@@ -247,9 +354,5 @@ class PlayerView: UIView, UIActionSheetDelegate, AVAudioPlayerDelegate {
         }
         
         self.play()
-    }
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
-        self.playerDidFinish()
     }
 }

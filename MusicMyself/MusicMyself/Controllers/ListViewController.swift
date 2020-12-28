@@ -39,13 +39,8 @@ class ListViewController: UIViewController {
         albums = Album().getList()
         collectionView.reloadData()
         
-        if(MyPlayer.instance.audioPlayer == nil) {
-            MyPlayer.instance.fichiers = Fichier().getListByAlbum(aId: 1);
-            MyPlayer.instance.currentAlbumId = 1
-        }
-        else {
-            MyPlayer.instance.audioPlayer.delegate = self
-        }
+        MyPlayer.instance.fichiers = Fichier().getListByAlbum(aId: 1);
+        MyPlayer.instance.currentAlbumId = 1
     }
     
     @IBAction func addClick(_ sender: Any) {

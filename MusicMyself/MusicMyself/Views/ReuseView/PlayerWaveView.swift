@@ -117,7 +117,7 @@ class PlayerWaveView: UIView {
         print("currentPosition: \(currentPosition)")
 
       //progressBar.progress = Float(currentPosition) / Float(audioLengthSamples)
-      let time = Float(currentPosition) / audioSampleRate
+      //let time = Float(currentPosition) / audioSampleRate
       //countUpLabel.text = formatted(time: time)
       //countDownLabel.text = formatted(time: audioLengthSeconds - time)
 
@@ -132,6 +132,15 @@ class PlayerWaveView: UIView {
     func disconnectVolumeTap() {
       engine.mainMixerNode.removeTap(onBus: 0)
       //volumeMeterHeight.constant = 0
+    }
+    
+    func scheduleAudioFile() {
+      guard let audioFile = audioFile else { return }
+
+      seekFrame = 0
+      player.scheduleFile(audioFile, at: nil) { [weak self] in
+        self?.needsFileScheduled = true
+      }
     }
     
     func formatted(time: Float) -> String {
@@ -155,14 +164,5 @@ class PlayerWaveView: UIView {
       }
       formattedString += "\(String(format: "%02d", mins)):\(String(format: "%02d", secs))"
       return formattedString
-    }
-    
-    func scheduleAudioFile() {
-      guard let audioFile = audioFile else { return }
-
-      seekFrame = 0
-      player.scheduleFile(audioFile, at: nil) { [weak self] in
-        self?.needsFileScheduled = true
-      }
     }
 }

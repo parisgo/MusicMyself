@@ -114,7 +114,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yhB-Oq-ybO">
-                                <rect key="frame" x="30" y="298" width="329" height="320"/>
+                                <rect key="frame" x="30" y="332" width="329" height="276"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -126,6 +126,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FRa-HC-pKP">
+                                <rect key="frame" x="334" y="223" width="18" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bQI-Ek-eOX">
+                                <rect key="frame" x="28" y="295" width="326" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xvl-cK-nXs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -135,6 +144,8 @@
                         <outlet property="labAuthor" destination="Mui-KN-GnQ" id="qmB-RF-B3W"/>
                         <outlet property="labDetail" destination="yhB-Oq-ybO" id="ZwI-gu-abQ"/>
                         <outlet property="labTitle" destination="6lp-b9-1VU" id="B9w-9z-nW8"/>
+                        <outlet property="sliderView" destination="bQI-Ek-eOX" id="2se-TT-t3s"/>
+                        <outlet property="viewDynamicBar" destination="FRa-HC-pKP" id="Ckb-0U-ia7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPS-u4-Z00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -592,6 +603,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

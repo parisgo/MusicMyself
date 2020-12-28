@@ -61,10 +61,6 @@ class ListDetailViewController: UIViewController {
             collectionView.reloadData()
             tableView.reloadData()
         }
-        
-        if MyPlayer.instance.audioPlayer != nil {
-            playerView.showButtonImage(isStart: !MyPlayer.instance.audioPlayer.isPlaying)
-        }        
     }
 
     @IBAction func moreClick(_ sender: Any) {
@@ -181,12 +177,11 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         MyPlayer.instance.currentFileIndex = indexPath!.row
         MyPlayer.instance.currentAlbumId = album.id
         
-        playerView.setCurrentInfo()
-        playerView.play()
-        
-        if(MyPlayer.instance.audioPlayer != nil) {
-            MyPlayer.instance.audioPlayer.delegate = self
+        if MyPlayer.instance.isPlaying {
+            MyPlayer.instance.player.stop()
         }
+        
+        playerView.play()
         
         tableView.reloadData()
     }
@@ -210,14 +205,6 @@ extension ListDetailViewController: UITableViewDelegate, UITableViewDataSource{
         
         return swipeActionConfig
     }    
-}
-
-extension ListDetailViewController: AVAudioPlayerDelegate{
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
-        playerView.playerDidFinish()
-        
-        tableView.reloadData()
-    }
 }
 
 extension ListDetailViewController : UICollectionViewDataSource {

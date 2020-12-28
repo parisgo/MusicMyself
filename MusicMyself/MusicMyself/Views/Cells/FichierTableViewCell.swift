@@ -35,7 +35,7 @@ class FichierTableViewCell: UITableViewCell {
         
         showAnimation(display: false)
         
-        guard MyPlayer.instance.audioPlayer != nil && MyPlayer.instance.audioPlayer.isPlaying && MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex].id == fichier.id! else {
+        guard MyPlayer.instance.isPlaying && MyPlayer.instance.fichiers[MyPlayer.instance.currentFileIndex].id == fichier.id! else {
             return
         }
         
